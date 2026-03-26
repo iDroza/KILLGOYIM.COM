@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17807777337"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17807777337');
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Answers | drozq</title>
+
+  <!-- SEO Description -->
+  <meta name="description" content="Answers on drozq.com is a brutal FAQ of existential questions with uncompromising responses about guilt, suffering, luck, mediocrity, ambition, and personal responsibility." />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://drozq.com/answers/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Answers | drozq" />
+  <meta property="og:description" content="Explore the ‘Answers’ page on drozq.com — a set of frequently asked existential questions with ruthless, unfiltered answers on guilt, suffering, luck, sacrifice, and ambition." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://drozq.com/answers/" />
+  <meta property="og:site_name" content="drozq" />
+  <meta property="og:image" content="https://drozq.com/preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Answers | drozq" />
+  <meta name="twitter:description" content="A dark FAQ of existential questions and unforgiving answers from drozq on guilt, suffering, mediocrity, and what you do with your life." />
+  <meta name="twitter:image" content="https://drozq.com/preview.jpg" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/flavicon.png" />
+
+  <style>
+    :root{
+      --bg:#000;
+      --fg:#fff;
+      --muted:rgba(255,255,255,.65);
+      --accent:#9900FF;
+      --border:rgba(255,255,255,.14);
+      --faq-bg:#0b0b14;
+      --faq-bg-hover:#15151f;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      min-height:100vh;
+      padding-bottom:5.5rem;
+    }
+
+    main{
+      max-width:880px;
+      margin:2.1rem auto 0;
+      padding:0 1.4rem 3.4rem;
+    }
+    h1{
+      font-size:1.6rem;
+      margin-bottom:1rem;
+      font-weight:700;
+    }
+
+    .faq-intro{
+      margin:0 0 1.8rem;
+      font-size:.9rem;
+      color:var(--muted);
+      line-height:1.6;
+      font-weight:500;
+    }
+
+    .faq-list{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+      margin-top:.8rem;
+    }
+
+    details.faq-item{
+      border-radius:16px;
+      background:var(--faq-bg);
+      border:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+      transition:
+        background-color .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease,
+        transform .12s ease;
+    }
+
+    details.faq-item:hover{
+      background:var(--faq-bg-hover);
+      border-color:rgba(255,255,255,.18);
+      box-shadow:0 18px 40px rgba(0,0,0,.75);
+      transform:translateY(-1px);
+    }
+
+    summary{
+      cursor:pointer;
+      list-style:none;
+      display:flex;
+      align-items:flex-start;
+      gap:.8rem;
+      padding:1.1rem 1.25rem;
+      outline:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+
+    summary::after{
+      content:'+';
+      font-size:1.05rem;
+      line-height:1;
+      color:var(--muted);
+      margin-left:auto;
+      margin-top:.1rem;
+      flex-shrink:0;
+      transition:color .18s ease;
+    }
+    details[open] summary::after{
+      content:'−';
+      color:var(--fg);
+    }
+
+    .faq-question{
+      font-size:1.02rem;
+      font-weight:700;
+      line-height:1.4;
+    }
+
+    .faq-answer{
+      padding:0 1.25rem 1.15rem 2.15rem;
+      margin-top:-.25rem;
+      font-size:.9rem;
+      color:var(--muted);
+      line-height:1.65;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+    .faq-answer p{ margin:.75rem 0 0; }
+
+    footer.site-footer{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:5;
+      background:rgba(0,0,0,.4);
+      backdrop-filter:blur(8px);
+      display:flex;
+      justify-content:center;
+      gap:2.5rem;
+      padding:1.35rem 1.5rem 1.1rem;
+    }
+    .footer-link{
+      position:relative;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.02em;
+      cursor:pointer;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+    }
+    .footer-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:#fff;
+      transition:width .2s ease-out;
+    }
+    .footer-link:hover{ opacity:.55; }
+    .footer-link:hover::after{ width:100%; }
+
+    @media (max-width:540px){
+      body{ padding-bottom:0; }
+      main{ margin-top:1.5rem; }
+      .faq-answer{ padding:0 1.1rem 1rem 2.1rem; }
+      footer.site-footer{
+        position:static;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+        gap:1rem 1.5rem;
+        padding:1.1rem 1.4rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared header inject point -->
+  <div id="site-header"></div>
+
+  <main>
+    <h1>Frequently asked questions.</h1>
+    <p class="faq-intro"></p>
+
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary><span class="faq-question">How do I know if I am a good person?</span></summary>
+        <div class="faq-answer">
+          <p>The dog who cries after it kills is no better than the dog who does not cry. Your guilt does not absolve you of sin.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">What if my suffering is in vain?</span></summary>
+        <div class="faq-answer">
+          <p>Everything, every pursuit, every action, every breath, every love, every second of anger, each moment of agony, the countless seconds of desolation, the final gasps of air you take are all in vain. You can only enjoy the taste of blood in your mouth for a moment, then it is gone.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">How do I get lucky?</span></summary>
+        <div class="faq-answer">
+          <p>Probability is distributed amongst the population evenly and without bias. In order to increase the likelihood of a desirable outcome occurring you must increase the number of primary inputs in the given domain.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">How do I live with sacrifices I cannot undo?</span></summary>
+        <div class="faq-answer">
+          <p>Understand that you have made these tradeoffs within a rational state of mind. You have chosen this path. Go all in.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">What meaning is left if everything ends in decay?</span></summary>
+        <div class="faq-answer">
+          <p>You must derive a meaning despite the futility.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">What if I am ordinary?</span></summary>
+        <div class="faq-answer">
+          <p>You likely are. Reinvent yourself.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">How do I forgive myself for what I have done?</span></summary>
+        <div class="faq-answer">
+          <p>Do not forgive yourself.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">What if I do not have what it takes?</span></summary>
+        <div class="faq-answer">
+          <p>The earth will swallow you whole.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">What if I never escape the life I was born into?</span></summary>
+        <div class="faq-answer">
+          <p>You likely will not.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">Why do I feel alone despite being surrounded by people?</span></summary>
+        <div class="faq-answer">
+          <p>I'm not sure.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">Who should I blame when everything in my life becomes rotten?</span></summary>
+        <div class="faq-answer">
+          <p>You may only blame yourself. When you bleed I do not feel it.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">What am I supposed to do with my life?</span></summary>
+        <div class="faq-answer">
+          <p>Find the effort equivalent of a mechanical vice and fight against it until you lose. You may then witness the observers fight amongst themselves for your remains.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">How much of my life is actually my fault?</span></summary>
+        <div class="faq-answer">
+          <p>All of it.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">Why do I feel inferior when others succeed?</span></summary>
+        <div class="faq-answer">
+          <p>You haven't left everything out on the field. You have earned your inferiority.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">What if I never become the person I planned to be?</span></summary>
+        <div class="faq-answer">
+          <p>You will likely convince yourself that your new life of failure is what you wanted all along. In reality you have earned your life of mediocrity.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">How do I know if I’m wasting my potential?</span></summary>
+        <div class="faq-answer">
+          <p>Every second rots between your fingertips. You have wasted your hours and days up until this point; humans are strangely consistent. If you would like to change you must reinvent yourself.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">Is my ambition a sickness?</span></summary>
+        <div class="faq-answer">
+          <p>Yes.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">Why should I try if my fate is already written for me?</span></summary>
+        <div class="faq-answer">
+          <p>Given the same inputs, you will always yield the same outputs. The only way to change fate is to change the inputs fed into the machine. The issue is you confuse the monotony you have crafted for yourself as something biblical. You are the source of your misery and simultaneously the source of your joy. Convince me there is fate and in the same breath place a handgun at the roof of your mouth.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">Should I excersise Humility?</span></summary>
+        <div class="faq-answer">
+          <p>You are given the choice to impose your will on whatever variables you choose. Whether these outcomes are mass genocide, immense monetary gain, or a life of "good enough" is up to you. Give the choice between an okay life and a life of trading long periods of suffering in return for the ability to carve out history, I choose to carve out history.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">What about those who do not want as much?</span></summary>
+        <div class="faq-answer">
+          <p>Moderation is for cowards.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary><span class="faq-question">What if things are too risky?</span></summary>
+        <div class="faq-answer">
+          <p>Risk is often mistaken for Volatility. Things that are volatile oftentimes contain the most arbitrage because the masses only like to pursue the "sure things" the issue here is that you are compensated accordingly. At the core volatility is the arbitrage base upon which you play the game. The results are not guaranteed which is why they yield outsized returns. If you want mediocre returns please remain on the path of least resistance and the path of least stress.</p>
+        </div>
+      </details>
+
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script>
+    (function () {
+      function inject(id, url, label) {
+        var target = document.getElementById(id);
+        if (!target) return;
+
+        fetch(url, { cache: 'no-cache' })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Failed to load ' + label);
+            return res.text();
+          })
+          .then(function (html) {
+            target.innerHTML = html;
+          })
+          .catch(function (err) {
+            console.error(label + ' load error:', err);
+          });
+      }
+
+      inject('site-header', '/header.html', 'header');
+      inject('site-footer', '/footer.html', 'footer');
+    })();
+  </script>
+</body>
+</html>
