@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17807777337"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17807777337');
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Primary SEO -->
+  <title>Constraint | drozq</title>
+  <meta name="description" content="Current constraint and archive for Joshua Guerrero (drozq) — the constraint is Joshua: open 5 escrows a month." />
+  <link rel="canonical" href="https://drozq.com/constraint/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Constraint | drozq" />
+  <meta property="og:description" content="Current constraint and archive for Joshua Guerrero (drozq) — the constraint is Joshua: open 5 escrows a month." />
+  <meta property="og:url" content="https://drozq.com/constraint/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://drozq.com/preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Constraint | drozq" />
+  <meta name="twitter:description" content="Current constraint and archive for Joshua Guerrero (drozq) — the constraint is Joshua: open 5 escrows a month." />
+  <meta name="twitter:image" content="https://drozq.com/preview.jpg" />
+
+  <!-- Indexing -->
+  <meta name="robots" content="index,follow" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/flavicon.png" />
+
+  <style>
+    :root{
+      --bg:#000;
+      --fg:#fff;
+      --muted:rgba(255,255,255,.65);
+      --accent:#9900FF;
+      --border:rgba(255,255,255,.14);
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      min-height:100vh;
+      padding-bottom:5.5rem;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      padding:1.2rem 1.4rem 0.4rem;
+    }
+    .back-link{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.01em;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+    }
+    .back-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:#fff;
+      transition:width .2s ease-out;
+    }
+    .back-link:hover{ opacity:.55; }
+    .back-link:hover::after{ width:100%; }
+    .back-link span.arrow{
+      font-size:1.1rem;
+      line-height:1;
+    }
+
+    main{
+      max-width:880px;
+      margin:1.5rem auto 0;
+      padding:0 1.4rem 3rem;
+    }
+    h1{
+      font-size:1.4rem;
+      margin-bottom:.35rem;
+      font-weight:700;
+    }
+    .date{
+      font-size:.8rem;
+      color:var(--muted);
+      margin-bottom:1.2rem;
+    }
+    .constraint-card{
+      border:1px solid rgba(255,255,255,.05);
+      background:rgba(255,255,255,.015);
+      border-radius:14px;
+      padding:1rem 1rem 1.1rem;
+      margin-bottom:1.8rem;
+    }
+    p{
+      line-height:1.55;
+      margin:0 0 1rem;
+      font-weight:500;
+    }
+    strong{font-weight:700;}
+
+    .constraint-title{
+      font-size:1rem;
+      margin:0 0 .8rem;
+    }
+    .constraint-body{
+      white-space:pre-wrap;
+      margin:0;
+      color:rgba(255,255,255,.92);
+    }
+
+    .metrics{
+      margin:.9rem 0 1rem;
+      padding:.9rem;
+      border:1px solid rgba(255,255,255,.06);
+      background:rgba(255,255,255,.01);
+      border-radius:12px;
+    }
+    .metrics-head{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:1rem;
+      margin:0 0 .75rem;
+      flex-wrap:wrap;
+    }
+    .metrics-head .label{
+      font-size:.75rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .metrics-head .constraint-eq{
+      font-size:.9rem;
+      font-weight:800;
+      color:rgba(255,255,255,.94);
+      white-space:nowrap;
+    }
+    .metric-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(170px, 1fr));
+      gap:.6rem;
+    }
+    .metric{
+      border:1px solid rgba(255,255,255,.06);
+      background:rgba(0,0,0,.15);
+      border-radius:12px;
+      padding:.7rem .75rem;
+    }
+    .metric .k{
+      font-size:.72rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:.25rem;
+    }
+    .metric .v{
+      font-size:1rem;
+      font-weight:800;
+      color:#fff;
+    }
+    .metric .s{
+      display:block;
+      margin-top:.25rem;
+      font-size:.78rem;
+      color:rgba(255,255,255,.75);
+      font-weight:600;
+    }
+
+    /* Archive styles */
+    .archive{
+      margin-top:.5rem;
+    }
+    .archive-header{
+      font-size:.75rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin-bottom:.4rem;
+    }
+    .archive-list{
+      display:flex;
+      flex-direction:column;
+      gap:.25rem;
+    }
+    .archive-link{
+      font-size:.75rem;
+      color:var(--muted);
+      text-decoration:none;
+      border-bottom:1px solid rgba(255,255,255,.18);
+      padding-bottom:.06rem;
+      opacity:.8;
+      align-self:flex-start;
+    }
+    .archive-link:hover{
+      opacity:1;
+      color:var(--fg);
+      border-bottom-color:var(--fg);
+    }
+
+    footer.site-footer{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:5;
+      background:rgba(0,0,0,.4);
+      backdrop-filter:blur(8px);
+      display:flex;
+      justify-content:center;
+      gap:2.5rem;
+      padding:1.35rem 1.5rem 1.1rem;
+    }
+    .footer-link{
+      position:relative;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.02em;
+      cursor:pointer;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+    }
+    .footer-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:#fff;
+      transition:width .2s ease-out;
+    }
+    .footer-link:hover{ opacity:.55; }
+    .footer-link:hover::after{ width:100%; }
+
+    @media (max-width:540px){
+      body{ padding-bottom:0; }
+      footer.site-footer{
+        position:static;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+        gap:1rem 1.5rem;
+        padding:1.1rem 1.4rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared header inject point -->
+  <div id="site-header"></div>
+
+  <main>
+    <h1>Constraint</h1>
+    <div class="date">03/06/2026</div>
+
+    <!-- CURRENT CONSTRAINT -->
+    <div class="constraint-card">
+      <p class="constraint-title"><strong>The objective is to open the escrow. 5 a month.</strong></p>
+
+      <div class="metrics" role="group" aria-label="Constraint metrics">
+        <div class="metrics-head">
+          <div class="label">Perceived Current Constraint = Joshua</div>
+          <div class="constraint-eq">5 Escrows / Month</div>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric">
+            <div class="k">Current leads</div>
+            <div class="v">732</div>
+            <span class="s">+118 since 02/19/2026</span>
+          </div>
+          <div class="metric">
+            <div class="k">Current hot</div>
+            <div class="v">13</div>
+          </div>
+          <div class="metric">
+            <div class="k">Current working</div>
+            <div class="v">40</div>
+          </div>
+          <div class="metric">
+            <div class="k">Dials / day</div>
+            <div class="v">100</div>
+            <span class="s">Minimum standard</span>
+          </div>
+          <div class="metric">
+            <div class="k">Emails / day</div>
+            <div class="v">100</div>
+            <span class="s">Minimum standard</span>
+          </div>
+          <div class="metric">
+            <div class="k">SMS / day</div>
+            <div class="v">100</div>
+            <span class="s">Minimum standard</span>
+          </div>
+          <div class="metric">
+            <div class="k">Lead response time</div>
+            <div class="v">&lt; 5 minutes</div>
+            <span class="s">Non-negotiable</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACTIVE PIPELINE -->
+      <div class="metrics" role="group" aria-label="Active pipeline">
+        <div class="metrics-head">
+          <div class="label">Active Pipeline</div>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric">
+            <div class="k">Escrow #1 — Elijah</div>
+            <div class="v">$9,687.50</div>
+            <span class="s">Opened 02/27/2026 · Closes 03/24/2026</span>
+          </div>
+          <div class="metric">
+            <div class="k">Pending offer — Candido (Lake Elsinore)</div>
+            <div class="v">$7,498.50</div>
+            <span class="s">Pending escrow</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INPUTS TO OPEN 1 ESCROW -->
+      <div class="metrics" role="group" aria-label="Primary inputs per escrow">
+        <div class="metrics-head">
+          <div class="label">Primary inputs = 1 open of escrow</div>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric">
+            <div class="k">Calls</div>
+            <div class="v">949</div>
+          </div>
+          <div class="metric">
+            <div class="k">Emails</div>
+            <div class="v">1,393</div>
+          </div>
+          <div class="metric">
+            <div class="k">Texts</div>
+            <div class="v">1,477</div>
+          </div>
+          <div class="metric">
+            <div class="k">Appointments set</div>
+            <div class="v">16</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INDUSTRY STATS -->
+      <div class="metrics" role="group" aria-label="Industry failure rate">
+        <div class="metrics-head">
+          <div class="label">2025 Realtor Stats (lockscreen reminder)</div>
+        </div>
+
+        <div class="metric-grid">
+          <div class="metric">
+            <div class="k">Closed zero deals</div>
+            <div class="v">71.1%</div>
+          </div>
+          <div class="metric">
+            <div class="k">Closed 1–4 deals</div>
+            <div class="v">14.9%</div>
+          </div>
+          <div class="metric">
+            <div class="k">Top 0.2% — 100–300 txns</div>
+            <div class="v">Monsters of the game</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="constraint-body">First escrow:
+I opened my first ever escrow on February 27th with my first ever client Elijah. You are the goat for trusting me buddy. First person to trust me on this endeavor where I do not even trust myself. On an endeavor I was willing to die for. I put everything on the line for this. I literally have no plan B — if this fails I fail. I have failed many times before. I do not want to fail again. I am all in. So much so my own coworkers describe me as a workaholic, if only you knew buddy. FUCK. This escrow is set to close on March 24th. The deal to me is worth $9,687.50 — if this were not a half deal this would be worth $19,375. Honestly this still doesn't feel real, I have been pulling 11–12 hour days just to get done with the workload.
+
+Pending offer — Candido:
+I also have another offer pending on a property in Lake Elsinore with who I assumed to be my first client Candido. That deal is worth $7,498.50 if it goes into escrow — idk hopefully it will.
+
+The feeling:
+I am currently at a point that I can really only describe as 100% certainty as 1000% doubt. Quite a strange feeling when everything you have been carving towards is actually panning out despite the failure rate. My lockscreen literally has the statistics of the amount of people who fail — in 2025 71.1% of realtors closed zero deals. Then another 14.9% closed 1–4 deals. What's funny is the top 0.2% (the people who are actually the monsters of the game) closed 100–300 transactions. What I realized to be true back when I was a car salesman reigns true here as well. This life I believe is fair, you experience probability evenly. I believe God has been very merciful to me and my family and I will be eternally grateful to him for this. I have always bitten off more than I can chew, and then managed anyways.
+
+Deliverables I am learning:
+Recently I have been learning about the actual deliverables of this business — like babysitting the home inspector, the sewer line guy, the termite inspector. I actually just learned that the lender is the one who has to call for the appraisal — which is cool, I was afraid I would have to do it, which is no problem, that's just another thing to confront when climbing the mountain of things I have never done before and am absolutely terrified to do.
+
+To the masses:
+To the masses I live quite an ordinary life that can be summarized in a few sentences. It is only when everything is on the line that you are able to breathe in the nuance and exhale the hatred for the masses. I will reach a billion before 30.
+
+Goal correction:
+I had mistakenly made the goal out to be "closing a deal" but that was so fuzzy because I had no idea what it even took to get that done. Now despite me being just a few days into my first escrow I have some clarity. The goal is not to close a deal. The objective is to open an escrow. That is it. Just to open the escrow. Obviously you must deliver on the escrow that you have opened but there is a lot more nuance that I have learned throughout this process. You ever ask for a $63,620 discount before?? This game is insane. But now that I have opened my first escrow I understand there is nothing magical about it.
+
+New target — 5 escrows / month:
+I have set the target to open 5 escrows a month. This should catapult me past the stats needed to cross top 1% income in the United States. Which is the current goal for year 2. Man my timeline keeps compressing, this shit is insane.
+
+Input formula:
+I figured out the primary inputs it takes to open one escrow: 949 calls + 1,393 emails + 1,477 texts + 16 appointments set = 1 OPEN OF ESCROW. Fucking bonkers. Welcome to the game Joshy. Truthfully by this time I should've been at 100 primary inputs × 49 days — which would have put me at 5 escrows open, but I am a foolish man. I will improve.
+
+The path:
+I see the path, I see what it takes, I see the sacrifice and it only takes iterations. I cannot wait to see what 3 months from today looks like or even what 3 years from today looks like. The current constraint is still Joshua Guerrero. I am the limiting factor. I have utilized a lot more leverage which I think will be pivotal in my ability to open 5 escrows a month and honestly I see this mountain ahead of me and I salivate at the mouth. May your desires be greater than your obstacles.</p>
+    </div>
+
+    <!-- PREVIOUS CONSTRAINTS -->
+    <section class="archive" aria-label="Previous constraints">
+      <div class="archive-header">Previous constraints</div>
+      <div class="archive-list">
+        <a class="archive-link" href="/constraint/02-19-2026/">02/19/2026</a>
+        <a class="archive-link" href="/constraint/01-28-2026/">01/28/2026</a>
+        <a class="archive-link" href="/constraint/01-10-2026/">01/10/2026</a>
+        <a class="archive-link" href="/constraint/01-01-2026/">01/01/2026</a>
+        <a class="archive-link" href="/constraint/12-16-2025/">12/16/2025</a>
+        <a class="archive-link" href="/constraint/12-12-2025/">12/12/2025</a>
+        <a class="archive-link" href="/constraint/12-08-2025/">12/08/2025</a>
+        <a class="archive-link" href="/constraint/11-22-2025/">11/22/2025</a>
+        <a class="archive-link" href="/constraint/11-17-2025/">11/17/2025</a>
+        <a class="archive-link" href="/constraint/11-10-2025/">11/10/2025</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared footer inject point -->
+  <div id="site-footer"></div>
+
+  <script>
+    (function () {
+      function inject(id, url, label) {
+        var target = document.getElementById(id);
+        if (!target) return;
+
+        fetch(url, { cache: 'no-cache' })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Failed to load ' + label);
+            return res.text();
+          })
+          .then(function (html) {
+            target.innerHTML = html;
+          })
+          .catch(function (err) {
+            console.error(label + ' load error:', err);
+          });
+      }
+
+      inject('site-header', '/header.html', 'header');
+      inject('site-footer', '/footer.html', 'footer');
+    })();
+  </script>
+</body>
+</html>
