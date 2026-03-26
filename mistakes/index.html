@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17807777337"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17807777337');
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mistakes | drozq</title>
+
+  <!-- SEO Description -->
+  <meta name="description" content="A running ledger of mistakes on drozq.com — each entry captures the date, area affected, and hindsight without excuses." />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://drozq.com/mistakes/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mistakes | drozq" />
+  <meta property="og:description" content="A simple, brutal log of mistakes on drozq.com — mistake, date, area affected, and hindsight." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://drozq.com/mistakes/" />
+  <meta property="og:site_name" content="drozq" />
+  <meta property="og:image" content="https://drozq.com/preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mistakes | drozq" />
+  <meta name="twitter:description" content="A minimal log of mistakes: date, area affected, and hindsight. No alibis." />
+  <meta name="twitter:image" content="https://drozq.com/preview.jpg" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/flavicon.png" />
+  <style>
+    :root{
+      --bg:#000;
+      --fg:#fff;
+      --muted:rgba(255,255,255,.65);
+      --accent:#9900FF;
+      --border:rgba(255,255,255,.14);
+      --card-bg:#0b0b14;
+      --card-bg-hover:#15151f;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      min-height:100vh;
+      padding-bottom:5.5rem;
+    }
+
+    /* Injected header container */
+    #site-header{
+      width:100%;
+    }
+
+    main{
+      max-width:880px;
+      margin:2.1rem auto 0;
+      padding:0 1.4rem 3.4rem;
+    }
+    h1{
+      font-size:1.6rem;
+      margin-bottom:.5rem;
+      font-weight:700;
+    }
+    .mistakes-intro{
+      margin:0 0 1.8rem;
+      font-size:.9rem;
+      color:var(--muted);
+      line-height:1.6;
+      font-weight:500;
+    }
+
+    .mistakes-list{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+      margin-top:1.2rem;
+    }
+
+    .mistake-card{
+      background:var(--card-bg);
+      border-radius:14px;
+      border:1px solid var(--border);
+      padding:1rem 1.1rem 1rem;
+      transition:
+        background-color .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease,
+        transform .12s ease;
+    }
+    .mistake-card:hover{
+      background:var(--card-bg-hover);
+      border-color:rgba(255,255,255,.22);
+      box-shadow:0 14px 36px rgba(0,0,0,.8);
+      transform:translateY(-1px);
+    }
+
+    .mistake-meta{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:.75rem;
+      margin-bottom:.35rem;
+    }
+
+    .mistake-label{
+      font-size:.8rem;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+    }
+
+    .mistake-date{
+      font-size:.78rem;
+      color:var(--muted);
+      opacity:.85;
+    }
+
+    .mistake-title{
+      margin:.1rem 0 .45rem;
+      font-size:1rem;
+      font-weight:600;
+      letter-spacing:.02em;
+    }
+
+    .mistake-fields{
+      display:flex;
+      flex-direction:column;
+      gap:.3rem;
+      font-size:.86rem;
+      line-height:1.5;
+    }
+
+    .mistake-field-label{
+      font-size:.72rem;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--muted);
+      margin-bottom:.04rem;
+    }
+
+    .mistake-field-value{
+      color:#e5e7eb;
+    }
+
+    footer.site-footer{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:5;
+      background:rgba(0,0,0,.4);
+      backdrop-filter:blur(8px);
+      display:flex;
+      justify-content:center;
+      gap:2.5rem;
+      padding:1.35rem 1.5rem 1.1rem;
+    }
+    .footer-link{
+      position:relative;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.02em;
+      cursor:pointer;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+    }
+    .footer-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:#fff;
+      transition:width .2s ease-out;
+    }
+    .footer-link:hover{ opacity:.55; }
+    .footer-link:hover::after{ width:100%; }
+
+    @media (max-width:540px){
+      body{ padding-bottom:0; }
+      main{ margin-top:1.5rem; }
+      footer.site-footer{
+        position:static;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+        gap:1rem 1.5rem;
+        padding:1.1rem 1.4rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Shared header inject point -->
+  <div id="site-header"></div>
+
+  <main>
+    <h1>Mistakes</h1>
+    <p class="mistakes-intro">A ledger.</p>
+
+    <section class="mistakes-list" aria-label="List of mistakes">
+
+      <!-- Seed entries you asked for -->
+      <article class="mistake-card">
+        <div class="mistake-meta">
+          <div>
+            <div class="mistake-label">mistake</div>
+            <h2 class="mistake-title">place holder</h2>
+          </div>
+          <div class="mistake-date">[Date]</div>
+        </div>
+        <div class="mistake-fields">
+          <div>
+            <div class="mistake-field-label">Area affected</div>
+            <div class="mistake-field-value">placing the hold</div>
+          </div>
+          <div>
+            <div class="mistake-field-label">hindsight</div>
+            <div class="mistake-field-value">holding the place</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mistake-card">
+        <div class="mistake-meta">
+          <div>
+            <div class="mistake-label">mistake</div>
+            <h2 class="mistake-title">placing the hold</h2>
+          </div>
+          <div class="mistake-date">[Date]</div>
+        </div>
+        <div class="mistake-fields">
+          <div>
+            <div class="mistake-field-label">Area affected</div>
+            <div class="mistake-field-value">place holder</div>
+          </div>
+          <div>
+            <div class="mistake-field-label">hindsight</div>
+            <div class="mistake-field-value">holding the place</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="mistake-card">
+        <div class="mistake-meta">
+          <div>
+            <div class="mistake-label">mistake</div>
+            <h2 class="mistake-title">holding the place</h2>
+          </div>
+          <div class="mistake-date">[Date]</div>
+        </div>
+        <div class="mistake-fields">
+          <div>
+            <div class="mistake-field-label">Area affected</div>
+            <div class="mistake-field-value">place holder</div>
+          </div>
+          <div>
+            <div class="mistake-field-label">hindsight</div>
+            <div class="mistake-field-value">placing the hold</div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <div id="fade" class="fadeout"></div>
+
+  <!-- Shared header + footer loader -->
+  <script>
+    (function () {
+      function inject(id, url, label) {
+        var target = document.getElementById(id);
+        if (!target) return;
+
+        fetch(url, { cache: 'no-cache' })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Failed to load ' + label);
+            return res.text();
+          })
+          .then(function (html) {
+            target.innerHTML = html;
+          })
+          .catch(function (err) {
+            console.error(label + ' load error:', err);
+          });
+      }
+
+      inject('site-header', '/header.html', 'header');
+      inject('site-footer', '/footer.html', 'footer');
+    })();
+  </script>
+
+</body>
+</html>
