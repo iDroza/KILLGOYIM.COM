@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17807777337"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17807777337');
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home | drozq</title>
+  <meta name="description" content="Homepage of Joshua Guerrero (drozq) — Los Angeles-based real estate and sales operator, building VIRELLO Brokerage. Current focus: liquidating real estate customer acquisition cost within 30 days." />
+  <link rel="canonical" href="https://drozq.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Joshua Guerrero | Los Angeles Real Estate Operator" />
+  <meta property="og:description" content="Real estate, customer acquisition, decade plan, and platforms from Joshua Guerrero (drozq) in Los Angeles." />
+  <meta property="og:url" content="https://drozq.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://drozq.com/preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Joshua Guerrero | Los Angeles Real Estate Operator" />
+  <meta name="twitter:description" content="Real estate, customer acquisition, decade plan, and platforms from Joshua Guerrero (drozq) in Los Angeles." />
+  <meta name="twitter:image" content="https://drozq.com/preview.jpg" />
+
+  <meta name="robots" content="index,follow" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="flavicon.png" />
+
+  <style>
+    :root{
+      --bg:#000;
+      --fg:#fff;
+      --accent:#9900FF;
+      --border:rgba(255,255,255,.14);
+      --shadow:0 10px 30px rgba(0,0,0,.45);
+      --caret-y:0.20em;
+    }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-weight:700;
+      -webkit-font-smoothing:antialiased;
+      overflow:hidden; /* desktop: lock viewport */
+    }
+
+    /* STATIC HOME HEADER (Contact only) */
+    .home-header,
+    .home-header *{ box-sizing:border-box; }
+
+    .home-header{
+      width:100%;
+      display:flex;
+      align-items:center;
+      flex-wrap:nowrap;                 /* keep on one line */
+      padding:1.2rem 1.4rem 0.4rem;     /* matches constraint topbar */
+      z-index:6;
+    }
+
+    .home-header .home-contact{
+      margin-left:auto;                 /* force right */
+      display:inline-flex;
+      align-items:center;
+      position:relative;
+      color:var(--fg, #fff);
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.01em;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+      white-space:nowrap;
+      flex:0 0 auto;
+    }
+
+    .home-header .home-contact::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:var(--accent, #9900FF); /* purple underline */
+      transition:width .2s ease-out;
+    }
+
+    .home-header .home-contact:hover{ opacity:.55; }
+    .home-header .home-contact:hover::after{ width:100%; }
+
+    /* Make remaining viewport space belong to the hero area */
+    body{
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
+
+    .wrap{
+      position:relative;
+      z-index:2;
+      flex:1 1 auto;     /* key: prevents overflow from header + wrap */
+      min-height:0;      /* allow flex child to shrink */
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:2rem;
+      padding-bottom:5.5rem; /* desktop: space for fixed footer */
+    }
+
+    .hero{
+      display:inline-block;
+      user-select:text;
+      pointer-events:auto;
+      border:none; /* removed thin white border */
+      border-radius:24px;
+      padding:clamp(16px,3vw,32px) clamp(18px,4vw,52px);
+      box-shadow:var(--shadow);
+    }
+
+    .line{
+      margin:0;
+      letter-spacing:.2px;
+      line-height:1.05;
+      font-size:clamp(28px,6vw,72px);
+      text-shadow:0 0 10px rgba(153,0,255,.18),0 0 35px rgba(153,0,255,.12);
+      white-space:pre-wrap;
+      opacity:0;
+      transition:opacity .6s ease-in-out; /* fade in/out whole line */
+    }
+
+    .accent{ color:var(--accent); }
+
+    .fadeout{
+      position:fixed;
+      inset:0;
+      background:#000;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity 1.5s ease;
+      z-index:999;
+    }
+    .fadeout.active{ opacity:1; }
+
+    .flash { animation: fadePulse 2.6s ease-in-out infinite alternate; }
+    @keyframes fadePulse { from { opacity:.28 } to { opacity:1 } }
+
+    /* footer (desktop) */
+    footer.site-footer{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:5;
+      background:rgba(0,0,0,.4);
+      backdrop-filter:blur(8px);
+      display:flex;
+      justify-content:center;
+      gap:2.5rem;
+      padding:1.35rem 1.5rem 1.1rem;
+    }
+
+    .footer-link{
+      position:relative;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.02em;
+      cursor:pointer;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+    }
+
+    .footer-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:#fff;
+      transition:width .2s ease-out;
+    }
+
+    .footer-link:hover{
+      opacity:.55;
+    }
+
+    .footer-link:hover::after{
+      width:100%;
+    }
+
+    /* visually hidden SEO block */
+    .sr-only{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      border:0;
+    }
+
+    /* mobile adjustments */
+    @media (max-width: 540px){
+      html,body{
+        overflow:auto;     /* allow scroll */
+        height:auto;
+      }
+      body{
+        display:block;     /* simpler flow on mobile */
+      }
+      .wrap{
+        min-height:calc(100vh - 120px); /* hero centered above footer */
+        display:grid;
+        place-items:center;
+        padding:1.6rem 1.4rem 0;
+      }
+      .hero{
+        max-width:100%;
+      }
+      footer.site-footer{
+        position:static;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+        gap:1rem 1.5rem;
+        padding:1.1rem 1.4rem 1.4rem;
+      }
+      .footer-link{
+        font-size:.85rem;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Joshua Guerrero",
+    "alternateName": "drozq",
+    "url": "https://drozq.com/",
+    "jobTitle": "Real Estate Operator, Founder of VIRELLO (planned)",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Los Angeles",
+      "addressRegion": "CA",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.instagram.com/drozq/",
+      "https://www.facebook.com/Drozq/",
+      "https://www.linkedin.com/in/guerrero-joshua/"
+      "https://www.youtube.com/@drozq"
+      "https://www.twitch.tv/drozq"
+      "https://x.com/OvODroza"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- STATIC header (Contact only) -->
+  <header class="home-header" role="banner" aria-label="Home header">
+    <a href="/contact/" class="home-contact">Contact</a>
+  </header>
+
+  <div class="wrap">
+    <div class="hero" id="hero" aria-live="polite" aria-atomic="true">
+      <h1 class="line" id="line">
+        <span>The world is </span><span class="accent">yours</span><span>.</span>
+      </h1>
+    </div>
+
+    <!-- SEO-readable static summary -->
+    <div class="sr-only">
+      <h2>Los Angeles Real Estate, Brokerage, and Customer Acquisition</h2>
+      <p>This is the homepage of Joshua Guerrero, also known as drozq, currently operating in Los Angeles, California. The current business focus is building toward VIRELLO Brokerage, removing the constraint of real estate customer acquisition cost inside 30 days, and executing a decade plan built on sales, lead generation, and acquisitions.</p>
+      <p>Explore core pages:</p>
+      <ul>
+        <li><a href="/constraint/">Current Constraint</a></li>
+        <li><a href="/decade/">Decade Plan</a></li>
+        <li><a href="/platforms/">Platforms</a></li>
+        <li><a href="/philanthropy/">Philanthropy</a></li>
+        <li><a href="/burn/">Burn</a></li>
+        <li><a href="/sacrifice/">Sacrifice</a></li>
+        <li><a href="/mistakes/">Mistakes</a></li>
+        <li><a href="/privacy/">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <div id="fade" class="fadeout"></div>
+
+  <script>
+    (function () {
+      var target = document.getElementById('site-footer');
+      if (!target) return;
+
+      fetch('/footer.html', { cache: 'no-cache' })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Failed to load footer');
+          return res.text();
+        })
+        .then(function (html) {
+          target.innerHTML = html;
+        })
+        .catch(function (err) {
+          console.error('Footer load error:', err);
+        });
+    })();
+  </script>
+
+  <div id="fade" class="fadeout"></div>
+
+  <script>
+  (function(){
+    const lineEl = document.getElementById('line');
+
+    const msgs = [
+      {text:`The world is yours.`,accent:`world`},
+      {text:`I am allergic to fuzzy thinkers.`,accent:`.`},
+      {text:`Some men are just built for war.`,accent:`war`},
+      {text:`I will write history.`,accent:`.`},
+      {text:`I will save humanity.`,accent:`.`},
+      {text:`I must cleanse the world.`,accent:`.`},
+      {text:`I wish I could be merciful.`,accent:`.`},
+      {text:`I fear nothing except death, and even in death I lose nothing.`,accent:`.`},
+      {text:`ya no llores, ya no temas.`,accent:`.`},
+      {text:`I have made many foolish errors.`,accent:`.`},
+      {text:`I have carved the path in anguish for those who come after me.`,accent:`.`},
+      {text:`I pray my hardships are not in vain.`,accent:`.`},
+      {text:`I crave war.`,accent:``},
+      {text:`I have given everything for this.`,accent:`everything`},
+      {text:`I am still miles away from where I want to be.`,accent:`miles away`},
+      {text:`I could not be further from my goals and closer to my goals simultaneously.`,accent:`I could not be further from my goals and closer to my goals simultaneously`},
+      {text:`I fear I will never reach what I aim for.`,accent:``},
+      {text:`Fear gnaws at me constantly.`,accent:`constantly`},
+      {text:`I live in constant fear I am not good enough to conquer the mountain that lies ahead, I must reinvent myself.`,accent:`.`},
+      {text:`I made the decision I would die for this.`,accent:`.`},
+      {text:`A man without a mission is a man who squanders his time.`,accent:`.`},
+      {text:`You can pluck things out of life and say I want this, and have it.`,accent:`.`},
+      {text:`The Lord has given me a playground.`,accent:`.`},
+      {text:`I am quite extreme.`,accent:`.`},
+      {text:`No one has questioned my resolve because it is higher than theirs.`,accent:`No one has questioned my resolve because it is higher than theirs.`},
+      {text:`Fear constrains me.`,accent:`.`},
+      {text:`Confront all decisions immediately.`,accent:`.`},
+      {text:`Avoid nothing.`,accent:`.`},
+      {text:`I wish I was kinder to you.`,accent:`.`},
+      {text:`I crave the hurricane.`,accent:`.`},
+      {text:`I crave the crisis.`,accent:`.`},
+      {text:`Conviction of a prophet.`,accent:`.`},
+      {text:`The supply chain does not forgive.`,accent:`The supply chain does not forgive`},
+      {text:`My hate and disgust increase linearly as the years unfold, this is unfortunate.`,accent:`.`},
+      {text:`Decrease tolerance.`,accent:`.`},
+      {text:`There are variations of right answers.`,accent:`.`},
+      {text:`Wealth goes to the aggregator.`,accent:`.`},
+      {text:`There is no demand for average.`,accent:`average`},
+      {text:`All abstractions are leaky.`,accent:`.`},
+      {text:`Nothing is beyond me.`,accent:`.`},
+      {text:`Desire to learn is scarce.`,accent:`.`},
+      {text:`What is underneath the abstraction?`,accent:`abstraction`},
+      {text:`Monte Carlo risk simulation.`,accent:`Monte Carlo risk simulation`},
+      {text:`Zero tolerance for filth.`,accent:`tolerance`},
+      {text:`There was nothing there for you anymore.`,accent:`nothing`},
+      {text:`Fool's errand.`,accent:``},
+      {text:`Tell me which you dread more, the echo or the answer.`,accent:`the echo or the answer`},
+      {text:`Winter took more than the flowers.`,accent:`.`},
+      {text:`"Faceless representative."`,accent:`Faceless representative`},
+      {text:`I cannot stand you people.`,accent:`.`},
+      {text:`Some never enter the crucible and instead watch by the sidelines.`,accent:`.`},
+      {text:`To whom much is given, much is expected.`,accent:`.`},
+      {text:`To beg the question.`,accent:`.`},
+      {text:`There are some games you do not get to play unless you are all in.`,accent:`do not get to play`},
+      {text:`In case you had fooled yourself, it is all your fault.`,accent:`fooled yourself`},
+      {text:`Deal velocity.`,accent:`Deal velocity`},
+      {text:`You're fine.`,accent:`.`},
+      {text:`Human empathy has no place in the pursuit of innovation.`,accent:`no place`},
+      {text:`Manufacture a crisis.`,accent:`Manufacture`},
+      {text:`Civil unrest.`,accent:`Civil unrest`},
+      {text:`The february hills are green.`,accent:`green`},
+      {text:`Tomarse una mordida del pastel.`,accent:`Tomarse una mordida del pastel.`},
+      {text:`You debase yourself for the approval of the goyim.`,accent:`.`},
+      {text:`Access & Influence.`,accent:``},
+      {text:`Moral decay.`,accent:`Moral decay`},
+      {text:`One second to form a desire | One decade to fulfill a desire.`,accent:`|`},
+      {text:`I wish you had more context.`,accent:`.`},
+      {text:`Still you feed us lies from the tablecloth.`,accent:`lies`},
+      {text:`Everything is my fault.`,accent:`.`},
+      {text:`World full of food and you choose starvation?`,accent:`?`},
+      {text:`The cost of entry is everything you have ever loved.`,accent:`loved`},
+      {text:`Sacrifice is table stakes.`,accent:`.`},
+      {text:`Where do you hide your organs?`,accent:`?`},
+      {text:`Seek truth.`,accent:`.`},
+      {text:`You are given a decade to separate from the population or drown amongst them.`,accent:`drown`},
+      {text:`Notice to perform.`,accent:`Notice to perform`},
+      {text:`Breach of contract.`,accent:`Breach of contract`},
+      {text:`Slow decisions are worse than bad decisions.`,accent:`worse`},
+      {text:`You're distracted.`,accent:``},
+      {text:`"I hope that shit falls out of escrow"`,accent:``},
+      {text:`"yea drugs make you stupid but who wants to be smart at a rave?"`,accent:``},
+      {text:`You have a handful of weeks and then you are erased from existence.`,accent:`.`},
+      {text:`Eventually the body deteriorates, and so does your memory.`,accent:`deteriorates`},
+      {text:`Can you breathe at high altitude?`,accent:`breathe`},
+      {text:`The air is thick you can run for miles.`,accent:`.`},
+      {text:`The sun will set in an hour or so.`,accent:`.`},
+      {text:`The miserable and poor distract themselves.`,accent:`distract themselves`},
+      {text:`Precise.`,accent:`.`},
+      {text:`I desire War.`,accent:`.`},
+      {text:`To understand behavior, pay attention to incentives.`,accent:`incentives`},
+      {text:`Joshua Guerrero v Time.`,accent:`v`},
+      {text:`Why do you deceive yourself?`,accent:``},
+      {text:`obsessive without compulsions.`,accent:`.`},
+      {text:`Indefatigable.`,accent:`.`},
+      {text:`Joshua Guerrero v Time.`,accent:`v`},
+      {text:`A hungry dog who already had a bone in his mouth.`,accent:`.`},
+      {text:`Murders and Acquisitions.`,accent:``},
+      {text:`Mergers and Executions.`,accent:``},
+      {text:`Grab opposing counsel by the collar.`,accent:`collar`},
+      {text:`"Jesus Christo no fue un Trabajolico."`,accent:`Trabajolico`},
+      {text:`The impoverished distract themselves.`,accent:`impoverished`},
+      {text:`I'm constantly addressing the limiting factor.`,accent:`limiting factor`},
+      {text:`Two & Twenty.`,accent:`.`},
+      {text:`Dare greatly.`,accent:`.`},
+      {text:`Ignore the mediocre.`,accent:`.`},
+      {text:`"this is the line that closed me."`,accent:``},
+      {text:`Your time is 100% accounted for.`,accent:`.`},
+      {text:`Call a gambling hotline and ask them heads or tails.`,accent:`.`},
+      {text:`Disregard your emotions.`,accent:`.`},
+      {text:`The rest of you Goyim can stand around and watch.`,accent:`.`},
+      {text:`I need to cleanse this world.`,accent:`cleanse`},
+      {text:`Please wake up.`,accent:`Please wake up`},
+      {text:`Are you tired of fighting?`,accent:`Are you tired of fighting`},
+      {text:`Read a book on me.`,accent:`.`},
+      {text:`Hydroplane into a different ZIP code.`,accent:`Hydroplane`},
+      {text:`Do not allow the weather or happenstance to consume your ambitions.`,accent:`.`},
+      {text:`You must fight to maintain the differential.`,accent:`.`},
+      {text:`"What if it doesn't work out?"`,accent:`What if it doesn't work out?`},
+      {text:`"Let's say you accomplish everything you wanted, then what?"`,accent:``},
+      {text:`Risk and Time.`,accent:`.`},
+      {text:`The uncertainty is truly horrific.`,accent:`.`},
+      {text:`The perception of pressure stays the same.`,accent:`.`},
+      {text:`His wrath was merciful.`,accent:`.`},
+      {text:`Starving musician v Fat hedge fund manager.`,accent:`.`},
+      {text:`Cleanse yourself before you ask the world to be clean.`,accent:`.`},
+      {text:`It's always sunny in space.`,accent:`.`},
+      {text:`Carve out the advantage.`,accent:`.`},
+      {text:`One decade, All in.`,accent:`One decade All in`},
+      {text:`Some people live in Newport beach mansions, Some people live in section 8 housing.`,accent:`.`},
+      {text:`It's difficult but not impossible.`,accent:`not impossible`},
+      {text:`The first freedom is the death of outside perception.`,accent:`outside perception`},
+      {text:`Do not dance for the audience.`,accent:`.`},
+      {text:`The Crucible demands sacrifice.`,accent:`.`},
+      {text:`Physics is Law, everything else is a recommendation.`,accent:`Physics is Law`},
+      {text:`Find the limiting factor.`,accent:`.`},
+      {text:`The constraint is all that matters.`,accent:`.`},
+      {text:`You earn the right to earn more in a year than people do in their lifetimes.`,accent:`.`},
+      {text:`Decrease tolerance of filth.`,accent:`.`},
+      {text:`Slower than you think and then faster than you can imagine.`,accent:`.`},
+      {text:`Potent.`,accent:`.`},
+      {text:`For the love of God please open your eyes.`,accent:`please`},
+      {text:`Time marches forward.`,accent:`Time marches forward`},
+      {text:`You are running out of capital.`,accent:`.`},
+      {text:`You have betrayed yourself for nothing.`,accent:`nothing`},
+      {text:`And a rod for the fool's back.`,accent:`.`},
+      {text:`The air only gets thinner.`,accent:`.`},
+      {text:`Sin when it is full grown brings forth death.`,accent:`.`},
+      {text:`Do not turn your eyes away from what you fear.`,accent:`.`},
+      {text:`Truth is discovered in torment.`,accent:`.`},
+      {text:`For if we sin deliberately after receiving the knowledge of the truth, there no longer remains a sacrifice for sins.`,accent:`the knowledge of the truth`},
+      {text:`Welcome to the Game.`,accent:`.`},
+      {text:`Welcome to the Crucible.`,accent:`.`},
+      {text:`You either build or you watch it being built.`,accent:`.`},
+      {text:`"This is my retirement job."`,accent:`This is my retirement job.`},
+      {text:`Creation is rarely painless.`,accent:`painless`},
+      {text:`It comes with suffering and devastation.`,accent:`It comes with suffering and devastation`},
+      {text:`Our common enemy is Joshua Guerrero.`,accent:`Joshua Guerrero`},
+      {text:`You are a number in a circus.`,accent:`number in a circus`},
+      {text:`There is unlimited demand for intelligence.`,accent:`unlimited`},
+      {text:`Nothing worse than a slow failure.`,accent:`Nothing worse than a slow failure`},
+      {text:`Once you have tasted flight you will forever walk the earth with your eyes turned skyward.`,accent:`tasted`},
+      {text:`Seize fate by the throat.`,accent:`.`},
+      {text:`Art is never finished, only abandoned.`,accent:`only abandoned`},
+      {text:`We are not equals.`,accent:``},
+      {text:`I need to catch up.`,accent:`I need to catch up`},
+      {text:`Undeniable.`,accent:`.`},
+      {text:`Increase pain tolerance.`,accent:`Increase pain tolerance`},
+      {text:`Winning isn't for everyone.`,accent:`.`},
+      {text:`Joshua Guerrero v The Crucible.`,accent:`Joshua Guerrero The Crucible`},
+      {text:`The Crucible is unfeeling.`,accent:`.`},
+      {text:`The Crucible is inescapable.`,accent:`.`},
+      {text:`The Crucible is impartial.`,accent:`.`},
+      {text:`The Crucible is fair.`,accent:`.`},
+      {text:`The Crucible is cruel.`,accent:`.`},
+      {text:`The Crucible is immoral.`,accent:`.`},
+      {text:`The Crucible is indifferent.`,accent:`.`},
+      {text:`The Crucible is apathetic.`,accent:`.`},
+      {text:`The Crucible is inhumane.`,accent:`.`},
+      {text:`The Crucible has seen many failures.`,accent:`.`},
+      {text:`The Crucible has seen many victories.`,accent:`.`},
+      {text:`The Crucible will swallow you whole.`,accent:`.`},
+      {text:`The Crucible is unreasonable.`,accent:`.`},
+      {text:`The Crucible is now.`,accent:`The Crucible is now`},
+      {text:`Fix yourself.`,accent:`Fix yourself`},
+      {text:`It was never personal.`,accent:`It was never personal`},
+      {text:`It was always personal.`,accent:`It was always personal`},
+      {text:`30 stitches, 15 staples.`,accent:`30 stitches, 15 staples`},
+      {text:`Fireproof.`,accent:`.`},
+      {text:`"Don't crash and burn like Joshua."`,accent:`crash and burn`},
+      {text:`Goyim in abundance.`,accent:`Goyim in abundance`},
+      {text:`There shall be weeping and gnashing of teeth.`,accent:`.`},
+      {text:`Nonlinear.`,accent:`.`},
+      {text:`Fell down a fiscal cliff once.`,accent:`once`},
+      {text:`Macro headwinds.`,accent:`Macro headwinds`},
+      {text:`The solution is not a doctorate in psychology.`,accent:`.`},
+      {text:`You despise the masses yet seek their approval?`,accent:`?`},
+      {text:`How much longer will you betray yourself to earn the opinions of cowards?`,accent:`?`},
+      {text:`If it doesnt work it will change nothing, If it does work it changes everything.`,accent:`everything`},
+      {text:`The fool foldeth his hands together and eateth his own flesh.`,accent:`The fool foldeth his hands together and eateth his own flesh`},
+      {text:`Random acts of hatred and violence.`,accent:`hatred and violence`},
+      {text:`Help I'm trapped in a subjective experience.`,accent:`subjective experience`},
+      {text:`It just takes a singular massive victory.`,accent:`massive victory`},
+      {text:`There's nothing manic about these episodes.`,accent:`There's nothing manic about these episodes`},
+      {text:`To whom much is given much is tested.`,accent:`To whom much is given much is tested`},
+      {text:`nothing ventured, nothing gained.`,accent:`nothing ventured, nothing gained`},
+      {text:`There are no rules.`,accent:`There are no rules`},
+      {text:`High Octane.`,accent:`High Octane`},
+      {text:`I seek to understand.`,accent:``},
+      {text:`Wage cattle.`,accent:`.`},
+      {text:`I understand your overkill bias.`,accent:`overkill bias`},
+      {text:`1% Outcome = 1% Tradeoff.`,accent:`=`},
+      {text:`To be hated by a loser is a good thing.`,accent:`.`},
+      {text:`To be hated by a coward is a good thing.`,accent:`.`},
+      {text:`To be hated by a fool is a good thing.`,accent:`.`},
+      {text:`To be hated by the goyim is a good thing.`,accent:`.`},
+      {text:`To be hated by a degenerate is a good thing.`,accent:`.`},
+      {text:`To be hated by the cattle is a good thing.`,accent:`.`},
+      {text:`Judge me by the quality of those who stand against me.`,accent:`.`},
+      {text:`We underestimate the upside and overestimate the downside.`,accent:`underestimate overestimate`},
+      {text:`All arbitrage lies in the uncertain and delayed.`,accent:`All`},
+      {text:`I had a near life experience once.`,accent:`.`},
+      {text:`Winners and Losers have the same goals.`,accent:`Losers`},
+      {text:`Wow that worked out well for him, I wonder whose fault it is?`,accent:`fault`},
+      {text:`All great things come with risk, to risk nothing is to guarantee failure.`,accent:`guarantee`},
+      {text:`Where there is joy there is suffering, where there is suffering there is potential for joy.`,accent:`.`},
+      {text:`It is neither good nor bad.`,accent:`neither`},
+      {text:`It is just weather.`,accent:`just`},
+      {text:`No man rules alone.`,accent:`No man rules alone`},
+      {text:`I do this for the love of the game.`,accent:`love of the game`},
+      {text:`Conqueror.`,accent:`Conqueror`},
+      {text:`Born clean is the wild dog.`,accent:`.`},
+      {text:`He will slaughter weeping at his sin, his cries will go unheard.`,accent:`unheard`},
+      {text:`Culpable only by teeth, by hunger.`,accent:`.`},
+      {text:`Weeping once more, condemned by nature.`,accent:`condemned by nature`},
+      {text:`Instinct, unbound by morality.`,accent:`unbound by morality`},
+      {text:`It cannot purify him.`,accent:`It cannot purify him`},
+      {text:`If I reek of ancestral bravery is my fear ancestral too?`,accent:`?`},
+      {text:`Do not love sleep or you will grow poor.`,accent:`.`},
+      {text:`The world tries to teach me the taste of the fall.`,accent:`fall`},
+      {text:`Fair only exists in a child's imagination.`,accent:`Fair only exists in a child's imagination`},
+      {text:`Human nature is timeless.`,accent:`.`},
+      {text:`The air is new.`,accent:`.`},
+      {text:`Perceived volatility = Insufficient volume.`,accent:`Insufficient volume`},
+      {text:`I am not doing enough.`,accent:`.`},
+      {text:`Win some, Win some.`,accent:`Win some`},
+      {text:`I could be doing more.`,accent:`I could be doing more`},
+      {text:`If anyone is not willing to work, let him not eat.`,accent:`If anyone is not willing to work, let him not eat`},
+      {text:`Simultaneously lamb and slaughterhouse.`,accent:`lamb slaughterhouse`},
+      {text:`There is no turning back.`,accent:`There is no turning back`},
+      {text:`You would be better off if your situation was worse because then you would be forced to change.`,accent:`worse forced`},
+      {text:`All fears boil down to death.`,accent:`death`},
+      {text:`Treat your attention like gold.`,accent:`gold`},
+      {text:`It is easy to dismiss things you cannot obtain.`,accent:`It is easy to dismiss things you cannot obtain`},
+      {text:`Those grapes are probably sour anyway.`,accent:``},
+      {text:`In life we must choose our regrets.`,accent:`choose`},
+      {text:`The pursuit is all there is.`,accent:`The pursuit is all there is`},
+      {text:`Cast a shadow over everyone.`,accent:`everyone`},
+      {text:`Dude relax we have bread and circus at 7pm.`,accent:``},
+      {text:`"What makes you think you're gonna do good over there?"`,accent:`What makes you think you're gonna do good over there?`},
+      {text:`You do not need to deserve it, you can have it anyways.`,accent:`have it anyways`},
+      {text:`You live out reflections of what you think other people want you to do. Coward.`,accent:`Coward`},
+      {text:`"Must be nice"`,accent:``},
+      {text:`"Easy for you to say"`,accent:``},
+      {text:`Do you want sympathy for your failures?`,accent:`sympathy failures`},
+      {text:`You are the output of the work.`,accent:`You`},
+      {text:`You have no idea.`,accent:`.`},
+      {text:`Lack of certainty makes it worth it.`,accent:`Lack of certainty makes it worth it`},
+      {text:`Do not complain about the results you did not get from work you did not do.`,accent:``},
+      {text:`There are no shortcuts for you.`,accent:`There are no shortcuts for you`},
+      {text:`No greater waste of time than to justify your actions to people who live a life you do not desire.`,accent:`.`},
+      {text:`Joshua Guerrero vs Bloomberg Terminal.`,accent:`Bloomberg Terminal`},
+      {text:`Timeless.`,accent:`.`},
+      {text:`The truth must contain its contradictions within itself.`,accent:``},
+      {text:`This is a game of outliers.`,accent:`This is a game of outliers`},
+      {text:`The opposite of a correct statement is a false statement, the opposite of a profound truth is another profound truth.`,accent:`The opposite of a correct statement is a false statement, the opposite of a profound truth is another profound truth`},
+      {text:`This moment is all there is.`,accent:``},
+      {text:`Victory is inevitable.`,accent:`Victory is inevitable`},
+      {text:`You do it to yourself.`,accent:``},
+      {text:`Up before the enemy.`,accent:``},
+      {text:`I steal a few breaths from the world for a minute.`,accent:`for a minute`},
+      {text:`I've denied myself nothing my eyes have desired.`,accent:``},
+      {text:`People choose to be poor.`,accent:`choose`},
+      {text:`Excellence attracts excellence.`,accent:``},
+      {text:`It cost me everything.`,accent:`everything`},
+      {text:`What does pleasure accomplish?`,accent:`?`},
+      {text:`The eye never has enough of seeing, the ear will never have its full of hearing.`,accent:``},
+      {text:`No one remembers the former generations.`,accent:`No one remembers the former generations`},
+      {text:`What has been will be again, what has been done will be done again.`,accent:``},
+      {text:`Those who died yesterday had plans for today.`,accent:`Those who died yesterday had plans for today`},
+      {text:`The water tastes like wine.`,accent:``},
+      {text:`The impoverished have nothing to look forward to, their pleas and sorrow fall upon deaf ears.`,accent:`The impoverished have nothing to look forward to, their pleas and sorrow fall upon deaf ears`},
+      {text:`Empathy will blur boundaries.`,accent:``},
+      {text:`Do not humanize them.`,accent:`Do not humanize them`},
+      {text:`I've noticed too many patterns.`,accent:`I've noticed too many patterns`},
+      {text:`Do not share your misfortune with others.`,accent:`Do not share your misfortune with others`},
+      {text:`I've had enough.`,accent:`I've had enough`},
+      {text:`The prerequisites are less than I once imagined.`,accent:``},
+      {text:`All suffering is self inflicted.`,accent:``},
+      {text:`Wake up.`,accent:``},
+      {text:`Deprive yourself.`,accent:``},
+      {text:`Nobody committed these sins for me.`,accent:``},
+      {text:`You will never regret the work you've put in, you will regret the time you've wasted.`,accent:``},
+      {text:`Desire & Sacrifice.`,accent:`Desire & Sacrifice`},
+      {text:`Go all in.`,accent:`Go all in`},
+      {text:`We share a 100% mortality.`,accent:``},
+      {text:`Own Brainshare.`,accent:`Own Brainshare`},
+      {text:`I need to get more for my time.`,accent:`more`},
+      {text:`Leverage = Delta between inputs and outputs.`,accent:`Delta`},
+      {text:`You've been playing by rules that do not exist.`,accent:`do not exist`},
+      {text:`I really enjoy the human experience.`,accent:`enjoy`},
+      {text:`My day has ended yet I cling to it, what a fool I become even if this foolishness is temporary.`,accent:`temporary`},
+      {text:`If you control the conditions you control the outcome.`,accent:`conditions`},
+      {text:`reductio ad absurdum.`,accent:`reductio ad absurdum`},
+      {text:`It is very easy to build a jail for yourself.`,accent:``},
+      {text:`Drive burn rate to zero.`,accent:``},
+      {text:`I live for this shit.`,accent:`I live for this shit`},
+      {text:`It is very difficult to describe the observable reality.`,accent:`describe`},
+      {text:`I write this for you.`,accent:`you`},
+      {text:`Strangers will consume your wealth and someone else will enjoy the fruits of your labor.`,accent:`fruits`},
+      {text:`In the end you will groan in anguish when disease consumes your body.`,accent:`consumes`},
+      {text:`He will die for his lack of self control.`,accent:``},
+      {text:`He will be lost for his great foolishness.`,accent:``},
+      {text:`Would you like a cupcake or to be shot point blank?`,accent:`to be shot point blank`},
+      {text:`Whoever loves pleasure will be a poor man.`,accent:`poor man`},
+      {text:`What do I believe to be true that is not?`,accent:``},
+      {text:`Exposure therapy.`,accent:`Exposure therapy`},
+      {text:`If you are not willing to be ruthless you will always obey someone who is.`,accent:``},
+      {text:`Those you compete against have had it worse and have done it better.`,accent:`better`},
+      {text:`I am yet to conquer fear.`,accent:`fear`},
+      {text:`The fall of man.`,accent:`The fall of man`},
+      {text:`It is new and simultaneously pre discovered.`,accent:`pre discovered`},
+      {text:`"Please be normal"`,accent:`yours`},
+      {text:`100% certainty, 1000% doubt.`,accent:`doubt`},
+      {text:`If you're tired of starting over, stop giving up.`,accent:`starting over`},
+      {text:`You killed my hostage :(`,accent:``},
+      {text:`May your desire be greater than your obstacles.`,accent:`greater than`},
+      {text:`The december hills are green.`,accent:`green`},
+      {text:`Unfortunately accurate pattern recognition.`,accent:`pattern recognition`},
+      {text:`Most go out with a whimper and are never spoken of again.`,accent:`yours`},
+      {text:`I hate most of you.`,accent:``},
+      {text:`My father is getting older, I do not have much time left.`,accent:`I do not have much time left`},
+      {text:`Everyone is compensated accordingly.`,accent:`accordingly`},
+      {text:`Nothing more, Nothing less.`,accent:`more less`},
+      {text:`I live for this shit.`,accent:`live`},
+      {text:`Attention is the scarce input.`,accent:`Attention`},
+      {text:`Rate of skill acquisition x Time.`,accent:`Time`},
+      {text:`There are no limits, only those who accept them.`,accent:`accept`},
+      {text:`You can waste your entire life if you so choose.`,accent:`choose`},
+      {text:`My hand like a pen the way it constantly makes contact with paper.`,accent:``},
+      {text:`You are not forced to change, a decade could pass and everything could remain the same.`,accent:``},
+      {text:`What you do next matters more than what you did last.`,accent:`next`},
+      {text:`Goals worth pursuing are goals we cannot hit whilst we are alive.`,accent:`we cannot hit`},
+      {text:`Delusions of grandeur.`,accent:`.`},
+      {text:`Losing teaches you one thing: to not lose.`,accent:`to not lose`},
+      {text:`I mourn your absence.`,accent:``},
+      {text:`Be realistic.`,accent:`realistic`},
+      {text:`I play with the fabric of reality.`,accent:`fabric`},
+      {text:`Reject surrogate activities.`,accent:``},
+      {text:`This confession has meant nothing.`,accent:`nothing`},
+      {text:`You obsess over your identity in relation to others while your soul rots inside of you.`,accent:`soul rots`},
+      {text:`What is the one thing I need to allocate all of my resources towards?`,accent:`all of my resources`},
+      {text:`Every outcome is my fault.`,accent:`fault`},
+      {text:`We are not punished for our sins but by them.`,accent:`punished`},
+      {text:`They are all asleep.`,accent:`asleep`},
+      {text:`The lord will not reward your inaction in the way you anticipate.`,accent:`anticipate`},
+      {text:`Humans will do unreasonable things to occupy their minds.`,accent:`occupy`},
+      {text:`Elimination of alternatives.`,accent:`alternatives`},
+      {text:`It's a write off so it pays to be charitable.`,accent:`pays`},
+      {text:`Cheap laughter.`,accent:`Cheap laughter`},
+      {text:`Force reality to conform.`,accent:`conform`},
+      {text:`Am I actually even trying?`,accent:``},
+      {text:`The years aren't wasted because you are the product of these years.`,accent:`product`},
+      {text:`You look for saviors when you should be looking in the mirror.`,accent:`mirror`},
+      {text:`Self worth is derived from the actions you take, not from opinion.`,accent:`opinion`},
+      {text:`Retain the dreams you believe are worth suffering for.`,accent:`suffering`},
+      {text:`Smell no flowers.`,accent:``},
+      {text:`I do nothing recreationally.`,accent:`recreationally`},
+      {text:`I can feel the soil falling over my head.`,accent:``},
+      {text:`I am digging a pit in the sand as the tide comes in.`,accent:``},
+      {text:`The crucible will remove your impurities.`,accent:`impurities`},
+      {text:`No half measures.`,accent:`No half measures`},
+      {text:`Asset management fee to scratch my balls without drawing blood.`,accent:`blood`},
+      {text:`Everything you like I liked five years ago.`,accent:``},
+      {text:`Where was I?`,accent:`I`},
+      {text:`I invented propaganda.`,accent:`propaganda`},
+      {text:`Time elapses, the grains of sand fall, my cells decay, my vision worsens, my memory deteriorates, what do I cling to now?`,accent:`now`},
+      {text:`No further questions your honor.`,accent:``},
+      {text:`The cattle deceive themselves and celebrate.`,accent:`deceive themselves`},
+      {text:`Anti-luck.`,accent:`Anti-luck`},
+      {text:`Reality tends to reorganize around your decisions.`,accent:`reorganize`},
+      {text:`My guilt does not purify me.`,accent:`purify`},
+      {text:`My mourning does not absolve me of sin.`,accent:`absolve`},
+      {text:`All timelines can be compressed, it just takes violence.`,accent:`violence`},
+      {text:`Observe, Orient, Decide, Act.`,accent:``},
+      {text:`Blink and you'll miss it.`,accent:`miss it`},
+      {text:`Joshua Guerrero v State of California.`,accent:`State of California`},
+      {text:`Noise v Signal.`,accent:`Signal`},
+      {text:`Reinvent yourself.`,accent:`yourself`},
+      {text:`I can't hold enough of you in my hands.`,accent:`hands`},
+      {text:`Waste away with me.`,accent:`me`},
+      {text:`Force a breakthrough.`,accent:`Force`},
+      {text:`What is the next constraint?`,accent:`constraint`},
+      {text:`It's written all over your face.`,accent:`face`},
+      {text:`Nobody wants to co-found a liquor store.`,accent:`liquor store`},
+      {text:`You dont think big enough.`,accent:`enough`},
+      {text:`First I had to find a mountain worth conquering.`,accent:`worth`},
+      {text:`Absolute returns > Relative returns.`,accent:`Absolute`},
+      {text:`I've been so cruel to you.`,accent:`you`},
+      {text:`If someone is doing better than you they are better than you.`,accent:`are`},
+      {text:`Fish with a stick of dynamite.`,accent:`dynamite`},
+      {text:`Please ask more of me.`,accent:`more`},
+      {text:`Renounce everything or Acquire everything.`,accent:`Acquire`},
+      {text:`Give them bread and circuses and they will never revolt.`,accent:`never`},
+      {text:`When will it end?`,accent:`end`},
+      {text:`The animal only protests if it knows it is caged`,accent:`caged`},
+      {text:`I just need to sacrifice more.`,accent:`more`},
+      {text:`Maybe if I sacrifice this too I'll get what I want out of life.`,accent:`want`},
+      {text:`Sink a knife into my chest and hold me whilst my lungs fill with blood.`,accent:`hold me`},
+      {text:`It's not luck.`,accent:`luck`},
+      {text:`I'm behind the curve.`,accent:`curve`},
+      {text:`You must destroy the person you are.`,accent:`destroy`},
+      {text:`It could be worse.`,accent:`worse`},
+      {text:`What are you so afraid of?`,accent:`afraid`},
+      {text:`You deserve to suffer.`,accent:`deserve`},
+      {text:`There is no nobility in poverty.`,accent:`poverty`},
+      {text:`Envy is a declaration of inferiority.`,accent:`inferiority`},
+      {text:`I touched the sun with borrowed hands.`,accent:`hands`},
+      {text:`It's priced in.`,accent:``},
+      {text:`Rake the common man over the coals.`,accent:`coals`},
+      {text:`The less fortunate toil for their coin.`,accent:`coin`},
+      {text:`El perico donde quiera es verde.`,accent:`verde`},
+      {text:`There is no such thing as good fortune or bad luck.`,accent:`bad`},
+      {text:`It's a question of character.`,accent:`character`},
+      {text:`Why have I done this to myself?`,accent:`myself`},
+      {text:`I hear sirens.`,accent:`sirens`},
+      {text:`Can a knife be evil?`,accent:`evil`},
+      {text:`Can a man be ethical?`,accent:`ethical`},
+      {text:`Can a child be innocent?`,accent:`innocent`},
+      {text:`What ails you?`,accent:`you`},
+      {text:`One of Zero.`,accent:`One`},
+      {text:`One in Five Hundred Thousand.`,accent:`One`},
+      {text:`Constant surveillance results in self regulation.`,accent:`regulation`},
+      {text:`Calamity awaits us.`,accent:`us`},
+      {text:`Take no one's word for it.`,accent:`word`},
+      {text:`We are derived from violence.`,accent:`violence`},
+      {text:`All probability is subjective.`,accent:`subjective`},
+      {text:`All physically possible things occur.`,accent:`occur`},
+      {text:`There is no uncertainty in the universe.`,accent:`universe`},
+      {text:`God does not play dice with the universe.`,accent:`universe`},
+      {text:`There is no replacement for hunger.`,accent:`hunger`},
+      {text:`shall inherit the earth.`,accent:`earth`},
+      {text:`Nothing in this world belongs to you.`,accent:`belongs`},
+      {text:`Irrespective of domain.`,accent:`domain`},
+      {text:`We are derived from violence.`,accent:`violence`},
+      {text:`Govern yourself accordingly.`,accent:`accordingly`},
+      {text:`Force all outcomes.`,accent:`outcomes`},
+      {text:`You are the same decaying organic matter as everything else.`,accent:`everything`},
+      {text:`If your plan requires luck it's a bad plan.`,accent:`bad`},
+      {text:`What else must I accomplish today?`,accent:`today`},
+      {text:`A wounded animal who cannot stop its bleeding eventually dies.`,accent:`dies`},
+      {text:`Is whether or not you get what you want out of life.`,accent:`want`},
+      {text:`You can have whatever you want, just not whenever you want it.`,accent:`whenever`},
+      {text:`Make mistakes of ambition, not mistakes of sloth.`,accent:`sloth`},
+      {text:`Let the young man in his desperation go out to hunt.`,accent:`hunt`},
+      {text:`I wrote this in chemotherapy.`,accent:`chemotherapy`},
+      {text:`The panopticon cannot be destroyed.`,accent:`destroyed`},
+      {text:`Oftentimes I overestimate myself yet very seldom I am wrong.`,accent:`wrong`},
+      {text:`A coward dies a thousand deaths.`,accent:`thousand`},
+      {text:`Nothing worth having is ever given to you.`,accent:`given`},
+      {text:`I'll find you in these waters.`,accent:`waters`},
+      {text:`Once then we'll be free.`,accent:`free`},
+      {text:`Relentless.`,accent:`Relentless`},
+      {text:`Incompressible.`,accent:`Incompressible`},
+      {text:`Pragmatic.`,accent:`Pragmatic`},
+      {text:`Unrealistic.`,accent:`Unrealistic`},
+      {text:`Unreasonable.`,accent:`Unreasonable`},
+      {text:`I hope I am more than a person to you, but a concept.`,accent:`concept`},
+      {text:`My memory is incomplete.`,accent:`incomplete`},
+      {text:`My flesh decays with each passing second.`,accent:`second`},
+      {text:`Volume Negates Luck.`,accent:`Luck`},
+      {text:`Obedience begets mediocrity.`,accent:`begets`},
+      {text:`Poverty loves balance.`,accent:`balance`},
+      {text:`The weak hide behind fairness.`,accent:`fairness`},
+      {text:`Cowards speak loudest of failure.`,accent:`failure`},
+      {text:`The masses do not know any better.`,accent:`better`},
+      {text:`An undefined problem cannot be solved.`,accent:`solved`},
+      {text:`You claim ideologies you do not understand.`,accent:`claim`},
+      {text:`Are you not entertained?`,accent:`entertained`},
+      {text:`You are source.`,accent:`source`},
+      {text:`Why do you listen to what I have to say yet suppress your own conclusions?`,accent:`suppress`},
+      {text:`It's by design.`,accent:`It's by design`},
+      {text:`Things were never supposed to be fair, you must carve out an advantage, you must take what you desire, do not fear the sacrifices required.`,accent:`desire`},
+      {text:`I've tasted freedom.`,accent:`freedom`},
+      {text:`Between stimulus and response is choice.`,accent:`choice`},
+      {text:`You have choices but rarely question them.`,accent:`question`},
+      {text:`I cannot accept a life of second best.`,accent:`accept`},
+      {text:`I feel saturated by it.`,accent:`saturated`},
+      {text:`I wanted to destroy something beautiful.`,accent:`beautiful`},
+      {text:`Jog in the middle of a hurricane.`,accent:`hurricane`},
+      {text:`If I change my mind it's far too late.`,accent:`late`},
+      {text:`You've waited in vain.`,accent:`vain`},
+      {text:`I'm wasting my days as I've wasted my nights and I've wasted my youth.`,accent:`youth`},
+      {text:`If he kills an elephant his poverty ends.`,accent:`elephant`},
+      {text:`If an elephant kills him his poverty ends.`,accent:`him`},
+      {text:`Why do you watch the concert through your phone?`,accent:`phone`},
+      {text:`Cannibalize your fears.`,accent:`fears`},
+      {text:`Come to your own conclusions.`,accent:`own`},
+      {text:`We all lose.`,accent:`lose`},
+      {text:`Every mistake rots inside my skull.`,accent:`skull`},
+      {text:`Pursue suffering.`,accent:`suffering`},
+      {text:`No one is coming to save you.`,accent:`save`},
+      {text:`You can easily return to the past, but no one is there anymore.`,accent:`anymore`},
+      {text:`Every action, breath, and desire on this planet is in vain.`,accent:`vain`},
+      {text:`I hate all my fattened calf equally.`,accent:`equally`},
+      {text:`Behind mountains are more mountains.`,accent:`more`},
+      {text:`Something to hold when there is nothing to say.`,accent:`nothing`},
+      {text:`I live three days at a time.`,accent:`time`},
+      {text:`Nothing can be gained without sacrifice.`,accent:`sacrifice`},
+      {text:`The pursuit itself is all there is to gain.`,accent:`gain`},
+      {text:`This isn't real.`,accent:`real`},
+      {text:`Yell into the masses.`,accent:`masses`},
+      {text:`I don't believe in yesterday.`,accent:`yesterday`},
+      {text:`The world will feel it.`,accent:`feel`},
+      {text:`Stagnation is death.`,accent:`death`},
+      {text:`Museum of failure.`,accent:`failure`},
+      {text:`Do not bargain with yourself.`,accent:`yourself`},
+      {text:`I am only a man.`,accent:`man`},
+      {text:`Arguing with reality.`,accent:`reality`},
+      {text:`Weekends are for poor people.`,accent:`poor`},
+      {text:`Undiluted.`,accent:`Undiluted`},
+      {text:`Cannot lose if you do not quit.`,accent:`quit`},
+      {text:`Hold the air within your hands, pinch it between your fingertips and realize you never had anything to begin with.`,accent:`anything`},
+      {text:`Moderation is for cowards.`,accent:`cowards`},
+      {text:`I have nothing profound to say.`,accent:`profound`},
+      {text:`Billions hold the same desires.`,accent:`desires`},
+      {text:`You've done nothing with your life.`,accent:`nothing`},
+      {text:`Reasonable actions do not result in unreasonable outcomes.`,accent:`outcomes`},
+      {text:`Become ungovernable.`,accent:`ungovernable`},
+      {text:`Enjoyment isn't profitable.`,accent:`profitable`},
+      {text:`My lawyer advised me not to speak my mind.`,accent:`mind`},
+      {text:`Take the path of most resistance.`,accent:`resistance`},
+      {text:`Stimulus : Response.`,accent:`:`},
+      {text:`Input : Output.`,accent:`:`},
+      {text:`The cruelty of God.`,accent:`cruelty`},
+      {text:`You people exercise the virtue of poverty.`,accent:`poverty`},
+      {text:`Adversity introduces a man to himself.`,accent:`himself`},
+      {text:`Just shazzamed the deafening silence that consumes me.`,accent:`consumes`},
+      {text:`I try to empathize with you.`,accent:`try`},
+      {text:`Yes, you all are wrong.`,accent:`wrong`},
+      {text:`Who will herd the cattle if not me?`,accent:`cattle`},
+      {text:`I cannot stop.`,accent:``},
+      {text:`Defy the natural order of exhaustion.`,accent:`exhaustion`},
+      {text:`Maximize every breath.`,accent:`breath`},
+      {text:`Carve out history.`,accent:`history`},
+      {text:`Mediocrity is a plague.`,accent:`plague`},
+      {text:`Vehicular manslaughter is a form of self expression.`,accent:`expression`},
+      {text:`Great things have never been achieved by those who are balanced.`,accent:`balanced`},
+      {text:`Bottomless pit of desire to conquer this planet.`,accent:`conquer`},
+      {text:`Whoever digs a pit will fall into it.`,accent:`fall`},
+      {text:`I cut off my nose to spite my face.`,accent:``},
+      {text:`Until death all defeat is psychological.`,accent:`psychological`},
+      {text:`In all labor there is profit.`,accent:`profit`},
+      {text:`Like a dog returns to vomit.`,accent:`vomit`},
+      {text:`We are so back.`,accent:``},
+      {text:`It can always turn around.`,accent:`It can always turn around`},
+      {text:`Why do I desire that which brings me suffering?`,accent:`suffering`},
+      {text:`You'll sacrifice things you wish you hadn't.`,accent:`wish`},
+      {text:`Diminishing returns are still returns.`,accent:`still`},
+      {text:`How do I get as much as I possibly can?`,accent:``},
+      {text:`I lie to my insurance company.`,accent:`insurance`},
+      {text:`Generate demand.`,accent:``},
+      {text:`In the end you wont remember your life, you'll only remember a few moments.`,accent:`moments`},
+      {text:`Another day is gone.`,accent:`gone`},
+      {text:`We rot.`,accent:``},
+      {text:`What would it take?`,accent:``},
+      {text:`Is it worth it?`,accent:``},
+      {text:`You have to be willing to move the fucking world.`,accent:``},
+      {text:`Have I led a compelling narrative?`,accent:`narrative`}
+    ];
+
+    const FINAL_LINE = 'Just Win.';
+    const FADE_IN = 600;
+    const FADE_OUT = 600;
+    const HOLD = 1000;
+
+    const wait = ms => new Promise(r => setTimeout(r, ms));
+
+    function parts(m){
+      const a = m.accent;
+      if(!a) return [{str:m.text, isAccent:false}];
+      const i = m.text.indexOf(a);
+      if(i < 0) return [{str:m.text, isAccent:false}];
+      return [
+        {str:m.text.slice(0,i), isAccent:false},
+        {str:a, isAccent:true},
+        {str:m.text.slice(i + a.length), isAccent:false}
+      ];
+    }
+
+    function buildHTML(m){
+      const toks = parts(m);
+      let out = '';
+      for(const t of toks){
+        out += t.isAccent ? `<span class="accent">${t.str}</span>` : t.str;
+      }
+      return out;
+    }
+
+    async function showMsg(m){
+      lineEl.style.opacity = 0;
+      lineEl.classList.remove('flash');
+      lineEl.innerHTML = buildHTML(m);
+
+      void lineEl.offsetWidth;
+
+      lineEl.style.opacity = 1;
+      await wait(FADE_IN + HOLD);
+
+      lineEl.style.opacity = 0;
+      await wait(FADE_OUT);
+    }
+
+    function shuffle(a){
+      const arr = a.slice();
+      for(let i = arr.length - 1; i > 0; i--){
+        const j = (Math.random() * (i + 1)) | 0;
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    (async function run(){
+      const order = shuffle(msgs);
+      for(const m of order){
+        await showMsg(m);
+      }
+
+      const fade = document.getElementById('fade');
+      fade.classList.add('active');
+      await wait(2000);
+
+      lineEl.style.transition = 'none';
+      lineEl.style.opacity = 1;
+      lineEl.classList.add('flash');
+      lineEl.innerHTML = FINAL_LINE;
+
+      fade.classList.remove('active');
+    })();
+  })();
+  </script>
+</body>
+</html>
+
