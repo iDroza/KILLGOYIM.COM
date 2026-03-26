@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17807777337"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17807777337');
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Primary SEO -->
+  <title>Philanthropy | drozq</title>
+  <meta name="description" content="Philanthropy page of drozq.com — Joshua Guerrero’s perspective on giving, incentives, and responsibility, framed by the warning: “Do not feed the wildlife.”" />
+  <link rel="canonical" href="https://drozq.com/philanthropy/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Philanthropy | drozq" />
+  <meta property="og:description" content="Philanthropy page of drozq.com — Joshua Guerrero’s perspective on giving, incentives, and responsibility, framed by the warning: “Do not feed the wildlife.”" />
+  <meta property="og:url" content="https://drozq.com/philanthropy/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://drozq.com/preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Philanthropy | drozq" />
+  <meta name="twitter:description" content="Philanthropy page of drozq.com — Joshua Guerrero’s perspective on giving, incentives, and responsibility, framed by the warning: “Do not feed the wildlife.”" />
+  <meta name="twitter:image" content="https://drozq.com/preview.jpg" />
+
+  <!-- Indexing -->
+  <meta name="robots" content="index,follow" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/flavicon.png" />
+
+  <style>
+    :root{
+      --bg:#000;
+      --fg:#fff;
+      --muted:rgba(255,255,255,.65);
+      --accent:#9900FF;
+      --border:rgba(255,255,255,.14);
+      --shadow:0 10px 30px rgba(0,0,0,.45);
+    }
+
+    *{ box-sizing:border-box; }
+
+    /* Match homepage viewport + typography behavior */
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-weight:700;
+      -webkit-font-smoothing:antialiased;
+      overflow:hidden; /* desktop: lock viewport */
+    }
+
+    /* Make remaining viewport space belong to the hero area (same as homepage) */
+    body{
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
+
+    /* Header/footer inject points */
+    #site-header,
+    #site-footer{
+      flex:0 0 auto;
+    }
+
+    /* Centered hero area spacing identical to homepage (.wrap) */
+    .wrap{
+      position:relative;
+      z-index:2;
+      flex:1 1 auto;      /* key: prevents overflow from header + wrap */
+      min-height:0;       /* allow flex child to shrink */
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:2rem;
+      padding-bottom:5.5rem; /* desktop: space for fixed footer */
+    }
+
+    .hero-message{
+      font-weight:700;
+      font-size:clamp(28px,6vw,72px);
+      letter-spacing:.03em;
+      white-space:nowrap;
+    }
+
+    /* footer (desktop) — same as homepage */
+    footer.site-footer{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:5;
+      background:rgba(0,0,0,.4);
+      backdrop-filter:blur(8px);
+      display:flex;
+      justify-content:center;
+      gap:2.5rem;
+      padding:1.35rem 1.5rem 1.1rem;
+    }
+
+    .footer-link{
+      position:relative;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.02em;
+      cursor:pointer;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+    }
+
+    .footer-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:#fff;
+      transition:width .2s ease-out;
+    }
+
+    .footer-link:hover{ opacity:.55; }
+    .footer-link:hover::after{ width:100%; }
+
+    /* mobile adjustments — same as homepage */
+    @media (max-width:540px){
+      html,body{
+        overflow:auto;  /* allow scroll */
+        height:auto;
+      }
+      body{
+        display:block;  /* simpler flow on mobile */
+      }
+      .wrap{
+        min-height:calc(100vh - 120px); /* hero centered above footer */
+        display:grid;
+        place-items:center;
+        padding:1.6rem 1.4rem 0;
+      }
+      .hero-message{
+        white-space:normal; /* prevent tiny-screen overflow */
+      }
+      footer.site-footer{
+        position:static;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+        gap:1rem 1.5rem;
+        padding:1.1rem 1.4rem 1.4rem;
+      }
+      .footer-link{
+        font-size:.85rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared header inject point -->
+  <div id="site-header"></div>
+
+  <main class="wrap">
+    <div class="hero-message">Do not feed the wildlife.</div>
+  </main>
+
+  <!-- Shared footer inject point -->
+  <div id="site-footer"></div>
+
+  <script>
+    (function () {
+      function inject(id, url, label) {
+        var target = document.getElementById(id);
+        if (!target) return;
+
+        fetch(url, { cache: 'no-cache' })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Failed to load ' + label);
+            return res.text();
+          })
+          .then(function (html) {
+            target.innerHTML = html;
+          })
+          .catch(function (err) {
+            console.error(label + ' load error:', err);
+          });
+      }
+
+      inject('site-header', '/header.html', 'header');
+      inject('site-footer', '/footer.html', 'footer');
+    })();
+  </script>
+</body>
+</html>
