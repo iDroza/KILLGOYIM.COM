@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17807777337"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17807777337');
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Joshua Guerrero</title>
+  <meta name="description" content="Contact Joshua Guerrero. Short intake. Clear routing." />
+  <link rel="canonical" href="https://drozq.com/contact/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Contact Joshua Guerrero" />
+  <meta property="og:description" content="Short intake. Clear routing." />
+  <meta property="og:url" content="https://drozq.com/contact/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://drozq.com/preview.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact Joshua Guerrero" />
+  <meta name="twitter:description" content="Short intake. Clear routing." />
+  <meta name="twitter:image" content="https://drozq.com/preview.jpg" />
+
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/flavicon.png" />
+
+  <style>
+    :root{
+      --bg:#000;
+      --fg:#fff;
+      --muted:rgba(255,255,255,.70);
+      --muted2:rgba(255,255,255,.50);
+
+      --accent:#9900FF;
+
+      --surface:#1c1c1e;
+      --border:#2c2c2e;
+      --shadow:0 22px 70px rgba(0,0,0,.72);
+
+      --radius-lg:22px;
+      --focus: 0 0 0 4px rgba(153,0,255,.28);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      overflow:hidden; /* desktop: like homepage */
+    }
+
+    /* === TOP LEFT: CONSTRAINT STYLE === */
+    .topbar{
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      padding:1.2rem 1.4rem 0.4rem;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:10;
+      width:100%;
+      pointer-events:none;
+    }
+    .topbar > a{ pointer-events:auto; }
+
+    .back-link{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.01em;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+    }
+    .back-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:#fff;
+      transition:width .2s ease-out;
+    }
+    .back-link:hover{ opacity:.55; }
+    .back-link:hover::after{ width:100%; }
+    .back-link span.arrow{
+      font-size:1.1rem;
+      line-height:1;
+    }
+
+    .backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .wrap{
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding:2.2rem 2rem 5.6rem;
+      position:relative;
+      z-index:2;
+    }
+
+    .stack{
+      width:min(920px, 100%);
+      display:grid;
+      gap:18px;
+    }
+
+    /* === TITLE OUTSIDE CARD: smaller + weight 700 + no mid-word breaks === */
+    .page-title{
+      margin:0;
+      letter-spacing:-0.03em;
+      line-height:1.05;
+      font-weight:700; /* requested */
+      font-size:clamp(32px, 5.4vw, 66px); /* slightly smaller */
+      text-shadow:0 0 10px rgba(153,0,255,.18), 0 0 35px rgba(153,0,255,.12);
+    }
+    .accent{ color:var(--accent); }
+    .nowrap{
+      display:inline-block;
+      white-space:nowrap;
+    }
+
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow);
+      padding:22px;
+    }
+
+    .card-head{
+      margin:2px 0 14px;
+    }
+    .card-head h2{
+      margin:0;
+      font-size:13px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.70);
+      font-weight:650;
+    }
+
+    form{ display:grid; gap:14px; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 760px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .field{ text-align:left; }
+
+    label{
+      display:block;
+      margin:0 0 6px;
+      color:rgba(255,255,255,.78);
+      font-size:13px;
+      font-weight:650;
+    }
+    .req{ color:rgba(255,255,255,.92); margin-left:.15rem; }
+
+    input, select, textarea{
+      width:100%;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:#111114;
+      color:var(--fg);
+      padding:12px 12px;
+      font-size:15px;
+      outline:none;
+      transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    textarea{
+      min-height:120px;
+      resize:vertical;
+      line-height:1.55;
+    }
+    input::placeholder, textarea::placeholder{ color:rgba(255,255,255,.32); }
+
+    input:focus, select:focus, textarea:focus{
+      border-color:rgba(255,255,255,.18);
+      box-shadow:var(--focus);
+      background:#0f0f12;
+    }
+
+    select{
+      appearance:none;
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, rgba(255,255,255,.55) 50%),
+        linear-gradient(135deg, rgba(255,255,255,.55) 50%, transparent 50%);
+      background-position:
+        calc(100% - 18px) 52%,
+        calc(100% - 12px) 52%;
+      background-size:6px 6px, 6px 6px;
+      background-repeat:no-repeat;
+      padding-right:2.8rem;
+    }
+
+    .honeypot{
+      position:absolute;
+      left:-9999px;
+      opacity:0;
+      pointer-events:none;
+      height:0;
+      width:0;
+    }
+
+    .consent{
+      display:grid;
+      grid-template-columns: 16px 1fr;
+      column-gap:10px;
+      align-items:start;
+      margin-top:4px;
+      color:var(--muted2);
+      font-weight:600;
+      font-size:13px;
+      line-height:1.45;
+      text-align:left;
+    }
+    .consent input{
+      width:16px;
+      height:16px;
+      margin:2px 0 0;
+      accent-color:var(--accent);
+    }
+    .consent label{
+      margin:0;
+      font-size:13px;
+      font-weight:600;
+      color:var(--muted2);
+    }
+
+    .actions{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .btn{
+      border:none;
+      border-radius:12px;
+      padding:12px 16px;
+      font-size:15px;
+      font-weight:750;
+      cursor:pointer;
+      transition:transform .06s ease, background .15s ease, opacity .15s ease, box-shadow .15s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      min-width:140px;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background:var(--accent);
+      color:#fff;
+      box-shadow:0 12px 28px rgba(0,0,0,.45);
+    }
+    .btn-primary:hover{ background:#a61aff; }
+    .btn-primary:active{ transform:translateY(1px); }
+    .btn.is-loading{ cursor:wait; opacity:.78; }
+
+    #form-status{
+      min-height:1.2em;
+      color:var(--muted);
+      font-weight:600;
+      text-align:left;
+      font-size:13px;
+      flex:1;
+      min-width:240px;
+    }
+    #form-status[data-status="success"]{ color:#34d399; }
+    #form-status[data-status="error"]{ color:#fb7185; }
+
+    /* Footer */
+    footer.site-footer{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:5;
+      background:rgba(0,0,0,.4);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      display:flex;
+      justify-content:center;
+      gap:2.5rem;
+      padding:1.35rem 1.5rem 1.1rem;
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+    .footer-link{
+      position:relative;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.02em;
+      cursor:pointer;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+    }
+    .footer-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:#fff;
+      transition:width .2s ease-out;
+    }
+    .footer-link:hover{ opacity:.55; }
+    .footer-link:hover::after{ width:100%; }
+
+    /* mobile */
+    @media (max-width: 540px){
+      html,body{ overflow:auto; height:auto; }
+
+      /* header: sticky (no overlap) */
+      .topbar{
+        position:sticky;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:20;
+        pointer-events:auto;
+
+        padding:
+          calc(env(safe-area-inset-top) + .9rem)
+          1.1rem
+          .65rem;
+
+        background:rgba(0,0,0,.55);
+        backdrop-filter:blur(10px);
+        -webkit-backdrop-filter:blur(10px);
+        border-bottom:1px solid rgba(255,255,255,.06);
+      }
+
+      .wrap{
+        min-height:calc(100vh - 120px);
+        place-items:start;
+        padding:.9rem 1.1rem 0;
+      }
+
+      /* ✅ FIX: checkbox aligns with the text line, not glued to the top */
+      .consent{
+        align-items:baseline;
+      }
+      .consent input{
+        margin:0;
+      }
+
+      .card{ padding:18px; }
+      footer.site-footer{
+        position:static;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+        gap:1rem 1.5rem;
+        padding:1.1rem 1.4rem 1.4rem;
+      }
+      .footer-link{ font-size:.85rem; }
+    }
+
+    /* short desktops */
+    @media (max-height: 760px){
+      html,body{ overflow:auto; height:auto; }
+      footer.site-footer{ position:static; }
+      .wrap{ padding-bottom:2rem; }
+      .backdrop{ display:none; }
+      .topbar{ position:static; width:auto; pointer-events:auto; }
+    }
+
+    .sr-only{
+      position:absolute;
+      width:1px;height:1px;
+      padding:0;margin:-1px;
+      overflow:hidden;
+      clip:rect(0,0,0,0);
+      border:0;
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ContactPage",
+    "name":"Contact Joshua Guerrero",
+    "url":"https://drozq.com/contact/",
+    "about":{
+      "@type":"Person",
+      "name":"Joshua Guerrero",
+      "alternateName":"drozq"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a href="/" class="back-link">
+      <span class="arrow">←</span>
+      <span>Return to Home</span>
+    </a>
+  </header>
+
+  <main class="wrap">
+    <div class="stack" aria-label="Contact form">
+      <h1 class="page-title">
+        <span>Speak to</span>
+        <span class="accent nowrap">Joshua</span>
+        <span class="accent nowrap">Guerrero</span>
+      </h1>
+
+      <section class="card" aria-label="Your contact info form">
+        <div class="card-head">
+          <h2>Your contact info</h2>
+        </div>
+
+        <form id="contact-form" method="POST" action="/api/lead" novalidate>
+          <!-- Honeypot -->
+          <div class="honeypot" aria-hidden="true">
+            <label>Company Website
+              <input type="text" name="company_website" autocomplete="off" tabindex="-1" />
+            </label>
+          </div>
+
+          <div class="grid">
+            <div class="field">
+              <label for="name">Full name<span class="req">*</span></label>
+              <input id="name" type="text" name="name" autocomplete="name" placeholder="Your full name" required />
+            </div>
+
+            <div class="field">
+              <label for="email">Email<span class="req">*</span></label>
+              <input id="email" type="email" name="email" autocomplete="email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="field">
+              <label for="phone">Phone<span class="req">*</span></label>
+              <input id="phone" type="tel" name="phone" autocomplete="tel" inputmode="tel"
+                     placeholder="+1 (___) ___-____" required />
+            </div>
+
+            <div class="field">
+              <label for="intent">Inquiry type<span class="req">*</span></label>
+              <select id="intent" name="intent" required>
+                <option value="">Select one</option>
+                <option value="Need Capital (VIRELLO)">Need Capital (VIRELLO)</option>
+                <option value="Need Operator (Los Angeles)">Need Operator (Los Angeles)</option>
+                <option value="Real Estate Deal / Acquisition">Real Estate Deal / Acquisition</option>
+                <option value="Consulting">Consulting</option>
+                <option value="Join Team">Join Team</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">Notes (optional)</label>
+            <textarea id="message" name="message" placeholder="Context helps. Constraints help more."></textarea>
+          </div>
+
+          <input type="hidden" name="source_page" value="contact" />
+
+          <div class="consent">
+            <input type="checkbox" id="consent" name="consent" value="yes" required />
+            <label for="consent">I agree to be contacted by email, call, and text.</label>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Send</button>
+            <div id="form-status" aria-live="polite"></div>
+          </div>
+        </form>
+      </section>
+
+      <div class="sr-only">
+        <h2>Contact Joshua Guerrero</h2>
+        <p>Required: full name, email, phone, inquiry type. Consent required for contact by email, call, and text.</p>
+      </div>
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script>
+    (function () {
+      const form = document.getElementById('contact-form');
+      const statusEl = document.getElementById('form-status');
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      function setStatus(text, type) {
+        statusEl.textContent = text || '';
+        if (type) statusEl.setAttribute('data-status', type);
+        else statusEl.removeAttribute('data-status');
+      }
+
+      form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          setStatus('Complete the required fields.', 'error');
+          return;
+        }
+
+        setStatus('Sending…', 'pending');
+        submitBtn.classList.add('is-loading');
+        submitBtn.disabled = true;
+
+        const formData = new FormData(form);
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          let payload = {};
+          const ct = response.headers.get('content-type') || '';
+          if (ct.includes('application/json')) payload = await response.json().catch(() => ({}));
+          else await response.text().catch(() => '');
+
+          if (!response.ok || payload.ok === false) {
+            console.error('Lead submit error', payload);
+            setStatus('Something broke. Try again.', 'error');
+          } else {
+            window.location.href = '/thank-you/';
+          }
+        } catch (err) {
+          console.error('Lead submit exception', err);
+          setStatus('Network error. Try again.', 'error');
+        } finally {
+          submitBtn.classList.remove('is-loading');
+          submitBtn.disabled = false;
+        }
+      });
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var target = document.getElementById('site-footer');
+      if (!target) return;
+
+      fetch('/footer.html', { cache: 'no-cache' })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Failed to load footer');
+          return res.text();
+        })
+        .then(function (html) {
+          target.innerHTML = html;
+        })
+        .catch(function (err) {
+          console.error('Footer load error:', err);
+        });
+    })();
+  </script>
+</body>
+</html>
