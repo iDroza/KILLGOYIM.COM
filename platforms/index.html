@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17807777337"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17807777337');
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Primary SEO -->
+  <title>Platforms | drozq</title>
+  <meta name="description" content="Explore all platforms where Joshua Guerrero (drozq) can be found — Instagram, Facebook, YouTube, LinkedIn, X, Twitch — plus direct email and phone contact details." />
+  <link rel="canonical" href="https://drozq.com/platforms/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Platforms | drozq" />
+  <meta property="og:description" content="Find every platform and contact channel for Joshua Guerrero (drozq), including social profiles, email, and direct cell phone." />
+  <meta property="og:url" content="https://drozq.com/platforms/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://drozq.com/preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Platforms | drozq" />
+  <meta name="twitter:description" content="Browse all of Joshua Guerrero’s (drozq) platforms in one place — social media, streaming, email, and cell." />
+  <meta name="twitter:image" content="https://drozq.com/preview.jpg" />
+
+  <!-- Indexing -->
+  <meta name="robots" content="index,follow" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/flavicon.png" />
+
+  <style>
+    :root{
+      --bg:#000;
+      --fg:#fff;
+      --muted:rgba(255,255,255,.65);
+      --accent:#9900FF;
+      --border:rgba(255,255,255,.14);
+
+      --card:rgba(255,255,255,.015);
+      --card-border:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box;}
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;
+      min-height:100vh;
+      padding-bottom:5.5rem; /* matches Constraint */
+    }
+
+    /* These remain for other pages / legacy markup; harmless to keep */
+    .topbar{
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      padding:1.2rem 1.4rem 0.4rem;
+    }
+    .back-link{
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.01em;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+    }
+    .back-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:#fff;
+      transition:width .2s ease-out;
+    }
+    .back-link:hover{ opacity:.55; }
+    .back-link:hover::after{ width:100%; }
+    .back-link span.arrow{
+      font-size:1.1rem;
+      line-height:1;
+    }
+
+    main{
+      max-width:880px;
+      margin:1.5rem auto 0;
+      padding:0 1.4rem 3rem;
+    }
+
+    h1.headline{
+      text-align:left;
+      font-size:1.55rem;
+      font-weight:700;
+      margin:0 0 .25rem;
+    }
+    p.subtitle{
+      text-align:left;
+      color:var(--muted);
+      margin:0 0 1.4rem;
+      line-height:1.35;
+      font-weight:500;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:1rem;
+    }
+
+    .platform-card{
+      border:1px solid var(--card-border);
+      border-radius:16px;
+      background:var(--card);
+      padding:1rem 1rem 1.05rem;
+      display:flex;
+      flex-direction:column;
+      gap:.75rem;
+      min-height:120px;
+      transition:
+        background-color .18s ease,
+        border-color .18s ease,
+        box-shadow .18s ease,
+        transform .12s ease;
+    }
+    .platform-card:hover{
+      border-color:rgba(255,255,255,.20);
+      box-shadow:0 14px 36px rgba(0,0,0,.75);
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.03);
+    }
+
+    .platform-title{
+      font-weight:650;
+      letter-spacing:.02em;
+    }
+
+    .platform-link{
+      display:inline-flex;
+      align-items:center;
+      gap:.35rem;
+      text-decoration:none;
+      color:#fff;
+      font-size:.75rem;
+      font-weight:650;
+      letter-spacing:.02em;
+      padding:.35rem .6rem .33rem;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:999px;
+      background:rgba(255,255,255,.02);
+      width:max-content;
+      transition:background .15s ease, transform .15s ease, border-color .15s ease;
+    }
+    .platform-link:hover{
+      background:rgba(255,255,255,.08);
+      border-color:rgba(255,255,255,.16);
+      transform:translateY(-1px);
+    }
+    .platform-link.is-disabled{
+      opacity:.35;
+      pointer-events:none;
+    }
+
+    footer.site-footer{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:5;
+      background:rgba(0,0,0,.4);
+      backdrop-filter:blur(8px);
+      display:flex;
+      justify-content:center;
+      gap:2.5rem;
+      padding:1.35rem 1.5rem 1.1rem;
+    }
+    .footer-link{
+      position:relative;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.02em;
+      cursor:pointer;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+    }
+    .footer-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:#fff;
+      transition:width .2s ease-out;
+    }
+    .footer-link:hover{ opacity:.55; }
+    .footer-link:hover::after{ width:100%; }
+
+    @media (max-width:540px){
+      body{ padding-bottom:0; }
+      footer.site-footer{
+        position:static;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+        gap:1rem 1.5rem;
+        padding:1.1rem 1.4rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared header inject point -->
+  <div id="site-header"></div>
+
+  <main>
+    <h1 class="headline">Platforms</h1>
+    <p class="subtitle">I hope you find what you are looking for.</p>
+
+    <div class="grid">
+      <div class="platform-card">
+        <div class="platform-title">Instagram</div>
+        <a class="platform-link" href="https://www.instagram.com/drozq/" target="_blank" rel="noreferrer">Visit Instagram →</a>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-title">Facebook</div>
+        <a class="platform-link" href="https://www.facebook.com/Drozq/" target="_blank" rel="noreferrer">Visit Facebook →</a>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-title">YouTube</div>
+        <a class="platform-link" href="https://www.youtube.com/@drozq" target="_blank" rel="noreferrer">Visit YouTube →</a>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-title">LinkedIn</div>
+        <a class="platform-link" href="https://www.linkedin.com/in/guerrero-joshua/" target="_blank" rel="noreferrer">Visit LinkedIn →</a>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-title">Email</div>
+        <a class="platform-link" href="mailto:Josh@drozq.com">Josh@drozq.com →</a>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-title">Cell</div>
+        <a class="platform-link" href="tel:+15109355701">(510) 935-5701 →</a>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-title">X</div>
+        <a class="platform-link" href="https://x.com/OvODroza" target="_blank" rel="noreferrer">Visit X →</a>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-title">Twitch</div>
+        <a class="platform-link" href="https://www.twitch.tv/drozq" target="_blank" rel="noreferrer">Visit Twitch →</a>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-title">Podcast</div>
+        <a class="platform-link is-disabled" href="#">Coming soon</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Shared footer inject point -->
+  <div id="site-footer"></div>
+
+  <script>
+    (function () {
+      function inject(id, url, label) {
+        var target = document.getElementById(id);
+        if (!target) return;
+
+        fetch(url, { cache: 'no-cache' })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Failed to load ' + label);
+            return res.text();
+          })
+          .then(function (html) {
+            target.innerHTML = html;
+          })
+          .catch(function (err) {
+            console.error(label + ' load error:', err);
+          });
+      }
+
+      inject('site-header', '/header.html', 'header');
+      inject('site-footer', '/footer.html', 'footer');
+    })();
+  </script>
+</body>
+</html>
