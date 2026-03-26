@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17807777337"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17807777337');
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Primary SEO -->
+  <title>Burn | drozq</title>
+  <meta name="description" content="Cash on hand, burn rate, wipeout date, and live age." />
+  <link rel="canonical" href="https://drozq.com/burn/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Burn | drozq" />
+  <meta property="og:description" content="Cash on hand, burn rate, wipeout date, and live age." />
+  <meta property="og:url" content="https://drozq.com/burn/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://drozq.com/preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/jpeg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Burn | drozq" />
+  <meta name="twitter:description" content="Cash on hand, burn rate, wipeout date, and live age." />
+  <meta name="twitter:image" content="https://drozq.com/preview.jpg" />
+
+  <!-- Indexing -->
+  <meta name="robots" content="index,follow" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/flavicon.png" />
+
+  <style>
+    :root{
+      --bg:#000;
+      --fg:#fff;
+      --muted:rgba(255,255,255,.65);
+      --danger:#ff3b30;
+      --rule:rgba(255,255,255,.14);
+    }
+
+    *{ box-sizing:border-box; }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-weight:700;
+      -webkit-font-smoothing:antialiased;
+      overflow:hidden;
+    }
+
+    body{
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
+
+    #site-header,#site-footer{ flex:0 0 auto; }
+
+    .wrap{
+      flex:1 1 auto;
+      min-height:0;
+      display:flex;
+      align-items:center;          /* vertical */
+      justify-content:flex-start;  /* left */
+      padding:2rem;
+      padding-bottom:5.5rem;
+    }
+
+    .sheet{
+      width:100%;
+      text-align:left;
+      font-size:clamp(28px,6vw,72px);
+      letter-spacing:.03em;
+      line-height:1.08;
+    }
+
+    .rows{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      gap:.55rem;
+    }
+
+    .row{
+      width:100%;
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:1.25rem;
+      align-items:baseline;
+    }
+
+    .k{
+      font-size:.26em;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      color:var(--muted);
+      white-space:normal;
+    }
+
+    .v{
+      font-size:.58em;
+      letter-spacing:.02em;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1, "lnum" 1;
+      white-space:nowrap;
+      text-align:right;
+      justify-self:end;
+    }
+
+    .neg{ color:var(--danger); }
+
+    .rule{
+      height:1px;
+      background:var(--rule);
+      width:100%;
+      margin:.25rem 0 .1rem;
+    }
+
+    footer.site-footer{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:5;
+      background:rgba(0,0,0,.4);
+      backdrop-filter:blur(8px);
+      display:flex;
+      justify-content:center;
+      gap:2.5rem;
+      padding:1.35rem 1.5rem 1.1rem;
+    }
+
+    .footer-link{
+      position:relative;
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      letter-spacing:.02em;
+      cursor:pointer;
+      padding-bottom:.35rem;
+      transition:opacity .2s ease;
+    }
+    .footer-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-0.35rem;
+      height:2px;
+      width:0;
+      background:#fff;
+      transition:width .2s ease-out;
+    }
+    .footer-link:hover{ opacity:.55; }
+    .footer-link:hover::after{ width:100%; }
+
+    @media (max-width:540px){
+      html,body{ overflow:auto; height:auto; }
+      body{ display:block; }
+      .wrap{
+        min-height:calc(100vh - 120px);
+        padding:1.6rem 1.4rem 0;
+      }
+      footer.site-footer{
+        position:static;
+        flex-wrap:wrap;
+        justify-content:flex-start;
+        gap:1rem 1.5rem;
+        padding:1.1rem 1.4rem 1.4rem;
+      }
+      .footer-link{ font-size:.85rem; }
+      .v{ font-size:.52em; }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="site-header"></div>
+
+  <main class="wrap">
+    <section class="sheet" aria-label="Burn balance sheet">
+      <div class="rows">
+        <div class="row">
+          <div class="k">Cash on Hand</div>
+          <div class="v" id="cash">$0.00</div>
+        </div>
+
+        <div class="row">
+          <div class="k">Burn Rate</div>
+          <div class="v neg" id="burn">-$0.00</div>
+        </div>
+
+        <div class="row">
+          <div class="k">The day I am wiped from existence</div>
+          <div class="v" id="wipeDate">—</div>
+        </div>
+
+        <div class="rule" aria-hidden="true"></div>
+
+        <div class="row">
+          <div class="k">Age</div>
+          <div class="v" id="age">—</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script>
+    (function () {
+      function inject(id, url, label) {
+        var target = document.getElementById(id);
+        if (!target) return;
+
+        fetch(url, { cache: 'no-cache' })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Failed to load ' + label);
+            return res.text();
+          })
+          .then(function (html) { target.innerHTML = html; })
+          .catch(function (err) { console.error(label + ' load error:', err); });
+      }
+
+      inject('site-header', '/header.html', 'header');
+      inject('site-footer', '/footer.html', 'footer');
+    })();
+  </script>
+
+  <script>
+    (function () {
+      // =========================
+      // UPDATE THESE (manual inputs)
+      // =========================
+
+      // UPDATE THIS: current bank account balance (cash on hand)
+      var CASH_ON_HAND = 19038.21;
+
+      // UPDATE THIS: burn rate per 30-day month (keep positive here; display will be negative + red)
+      var BURN_RATE    = 2644.11;
+
+      /*
+        UPDATE THIS: WIPEOUT DATE (BURNED-IN / NON-VARIABLE)
+
+        Calculated in-chat (Los Angeles) anchored to: March 17, 2026 @ 12:00 PM PT
+          monthsRemaining = CASH_ON_HAND / BURN_RATE
+          daysRemaining   = monthsRemaining * 30
+          = (19038.21 / 2644.11) * 30
+          = 216.0175 days after March 17, 2026
+
+        Result burned in as:
+      */
+      var WIPEOUT_DATE = 'Monday, October 19, 2026';
+
+      // Birth: Aug 27, 2004 @ 4:00 AM Pacific (offset pinned for that date)
+      var BIRTH_ISO = '2004-08-27T04:00:00-07:00';
+
+      // =========================
+      // internals
+      // =========================
+      var MS_PER_DAY = 86400000;
+
+      var fmtUSD = new Intl.NumberFormat('en-US', {
+        style:'currency', currency:'USD', maximumFractionDigits:2
+      });
+
+      var elCash = document.getElementById('cash');
+      var elBurn = document.getElementById('burn');
+      var elWipe = document.getElementById('wipeDate');
+      var elAge  = document.getElementById('age');
+
+      function pad2(n){ return (n < 10 ? '0' : '') + n; }
+      function pad3(n){
+        n = Math.floor(n);
+        if (n < 10) return '00' + n;
+        if (n < 100) return '0' + n;
+        return '' + n;
+      }
+
+      function renderStaticNumbers(){
+        elCash.textContent = fmtUSD.format(CASH_ON_HAND);
+        elBurn.textContent = '-' + fmtUSD.format(Math.abs(BURN_RATE));
+      }
+
+      // Wipeout date is intentionally NOT computed at runtime.
+      function renderBurnedInWipeDate(){
+        elWipe.textContent = WIPEOUT_DATE || '—';
+      }
+
+      // Age ticks up (includes milliseconds)
+      // Format: y d h m s ms
+      function renderAge(){
+        var birth = new Date(BIRTH_ISO);
+        if (!isFinite(birth)) { elAge.textContent = '—'; return; }
+
+        var now = new Date();
+        if (now < birth) { elAge.textContent = '—'; return; }
+
+        // Years since birth (calendar-true), plus remainder since last birthday
+        var years = now.getFullYear() - birth.getFullYear();
+        var lastBirthday = new Date(birth.getTime());
+        lastBirthday.setFullYear(birth.getFullYear() + years);
+        if (lastBirthday > now){
+          years--;
+          lastBirthday = new Date(birth.getTime());
+          lastBirthday.setFullYear(birth.getFullYear() + years);
+        }
+
+        var diffMs = now.getTime() - lastBirthday.getTime();
+
+        var days = Math.floor(diffMs / MS_PER_DAY);
+        var remMs = diffMs - (days * MS_PER_DAY);
+
+        var hours = Math.floor(remMs / 3600000); remMs -= hours * 3600000;
+        var mins  = Math.floor(remMs / 60000);   remMs -= mins * 60000;
+        var secs  = Math.floor(remMs / 1000);    remMs -= secs * 1000;
+        var msec  = remMs;
+
+        elAge.textContent =
+          years + 'y ' + days + 'd ' +
+          pad2(hours) + 'h ' +
+          pad2(mins)  + 'm ' +
+          pad2(secs)  + 's ' +
+          pad3(msec)  + 'ms';
+      }
+
+      renderStaticNumbers();
+      renderBurnedInWipeDate();
+      renderAge();
+      setInterval(renderAge, 30);
+    })();
+  </script>
+</body>
+</html>
