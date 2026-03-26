@@ -1,0 +1,109 @@
+<!-- header.html -->
+<style>
+  .drozq-header,
+  .drozq-header *{ box-sizing:border-box; }
+
+  .drozq-header{
+    width:100%;
+    display:flex;
+    align-items:center;
+    flex-wrap:nowrap;                 /* keep on one line */
+    padding:1.2rem 1.4rem 0.4rem;     /* matches constraint topbar */
+  }
+
+  /* Left link */
+  .drozq-header .drozq-home{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    position:relative;
+    color:var(--fg, #fff);
+    text-decoration:none;
+    font-weight:600;
+    letter-spacing:.01em;
+    padding-bottom:.35rem;
+    transition:opacity .2s ease;
+    white-space:nowrap;
+    flex:0 0 auto;
+  }
+
+  /* Right link (forced right, even if some CSS breaks justify-content) */
+  .drozq-header .drozq-contact{
+    margin-left:auto;                 /* the key */
+    display:inline-flex;
+    align-items:center;
+    position:relative;
+    color:var(--fg, #fff);
+    text-decoration:none;
+    font-weight:600;
+    letter-spacing:.01em;
+    padding-bottom:.35rem;
+    transition:opacity .2s ease;
+    white-space:nowrap;
+    flex:0 0 auto;
+  }
+
+  /* Underline animation baseline */
+  .drozq-header .drozq-home::after,
+  .drozq-header .drozq-contact::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-0.35rem;
+    height:2px;
+    width:0;
+    transition:width .2s ease-out;
+  }
+
+  /* Home underline is white */
+  .drozq-header .drozq-home::after{
+    background:var(--fg, #fff);
+  }
+
+  /* Contact underline is purple */
+  .drozq-header .drozq-contact::after{
+    background:var(--accent, #9900FF);
+  }
+
+  .drozq-header .drozq-home:hover,
+  .drozq-header .drozq-contact:hover{ opacity:.55; }
+
+  .drozq-header .drozq-home:hover::after,
+  .drozq-header .drozq-contact:hover::after{ width:100%; }
+
+  .drozq-header .arrow{
+    font-size:1.1rem;
+    line-height:1;
+  }
+
+  /* If the screen gets too tight, shorten the left label so Contact never drops */
+  @media (max-width:420px){
+    .drozq-header .label-long{ display:none; }
+    .drozq-header .label-short{ display:inline; }
+  }
+  @media (min-width:421px){
+    .drozq-header .label-short{ display:none; }
+  }
+</style>
+
+<div class="drozq-header" role="banner" aria-label="Site header">
+  <a href="/" class="drozq-home">
+    <span class="arrow">←</span>
+    <span class="label-long">Return to Home</span>
+    <span class="label-short">Home</span>
+  </a>
+
+  <a href="/contact/" class="drozq-contact">Contact</a>
+</div>
+
+<script>
+  (function(){
+    try{
+      var p = (location.pathname || '').toLowerCase();
+      if (p === '/contact/' || p === '/contact'){
+        var c = document.querySelector('.drozq-contact');
+        if (c) c.setAttribute('aria-current','page');
+      }
+    }catch(e){}
+  })();
+</script>
