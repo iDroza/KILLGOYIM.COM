@@ -110,8 +110,8 @@
     .wrap{
       position:relative;
       z-index:2;
-      flex:1 1 auto;     /* key: prevents overflow from header + wrap */
-      min-height:0;      /* allow flex child to shrink */
+      flex:1 1 auto;
+      min-height:calc(100vh - 60px); /* FIX: was min-height:0 — now gives grid room to center */
       display:grid;
       place-items:center;
       text-align:center;
@@ -971,4 +971,3 @@
   </script>
 </body>
 </html>
-
