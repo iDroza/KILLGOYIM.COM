@@ -48,18 +48,16 @@
       -moz-osx-font-smoothing:grayscale;
       overflow-x:hidden;
     }
-    main{position:relative;min-height:100vh;min-height:100dvh}
-    .panel{position:absolute;top:10px;white-space:nowrap}
-    .panel.left{left:12px}
-    .panel.right{right:12px}
+    main{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
+    .top{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 12px 0}
+    .panel{white-space:nowrap}
+    .fill{flex:1;display:flex;align-items:center;justify-content:center}
     .panel h1{margin:0 0 .6em;font-size:inherit;font-weight:600;letter-spacing:.01em}
     .rows{display:grid;grid-template-columns:auto auto;column-gap:1.5em;row-gap:.1em}
     .rows .k{opacity:.55;letter-spacing:.04em}
     .rows .v{text-align:right;min-width:2ch}
     .stamp{margin-top:1.2em;opacity:.55;letter-spacing:.02em}
     .center{
-      position:absolute;left:50%;bottom:12px;
-      transform:translateX(-50%);
       font-size:clamp(1.5rem,3.4vw,3.4rem);
       font-weight:700;
       letter-spacing:.01em;
@@ -69,15 +67,14 @@
     }
     @media (max-width:640px){
       body{font-size:12px}
-      .panel{top:8px}
-      .panel.left{left:8px}
-      .panel.right{right:8px}
+      .top{padding:8px 8px 0}
       .center{font-size:1.5rem}
     }
   </style>
 </head>
 <body>
   <main>
+    <div class="top">
     <section class="panel left" aria-label="Decade Over">
       <h1>Decade Over</h1>
       <div class="rows">
@@ -91,13 +88,6 @@
       <div class="stamp">END: <span id="end-stamp"></span></div>
     </section>
 
-    <div class="center" aria-label="Target">
-      <div>One Billion</div>
-      <div>One Decade</div>
-      <div>0.0002% Chance</div>
-      <div>One in 500,000 People</div>
-      <div>One of 800 Billionaires</div>
-    </div>
 
     <section class="panel right" aria-label="Time in LA">
       <h1>Time in LA</h1>
@@ -111,6 +101,16 @@
       </div>
       <div class="stamp">START: <span id="start-stamp"></span></div>
     </section>
+    </div>
+    <div class="fill">
+    <div class="center" aria-label="Target">
+      <div>One Billion</div>
+      <div>One Decade</div>
+      <div>0.0002% Chance</div>
+      <div>One in 500,000 People</div>
+      <div>One of 800 Billionaires</div>
+    </div>
+    </div>
   </main>
 
   <script>
