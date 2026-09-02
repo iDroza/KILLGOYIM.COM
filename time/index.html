@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17807777337"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-17807777337');
+</script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Time</title>
+  <meta name="description" content="Live decade countdown. Start: 2025-09-01 16:30:00 Los Angeles. End: 2035-09-01." />
+  <link rel="canonical" href="https://killgoyim.com/time/" />
+  <meta property="og:title" content="Time" />
+  <meta property="og:description" content="Live decade countdown." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://killgoyim.com/time/" />
+  <meta property="og:image" content="https://killgoyim.com/preview.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Time" />
+  <meta name="twitter:image" content="https://killgoyim.com/preview.jpg" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/flavicon.png" />
+
+  <style>
+    :root{
+      --bg:#000;
+      --fg:#fff;
+      --dim:#666;
+      --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+      --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:var(--sans);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    main{
+      min-height:100vh;
+      min-height:100dvh;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      justify-items:center;
+      gap:3rem;
+      padding:3rem 4vw;
+    }
+    .panel{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+    }
+    .panel h1{
+      margin:0 0 1.25rem;
+      font-size:clamp(1rem,1.4vw,1.25rem);
+      font-weight:500;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+    }
+    .rows{
+      display:grid;
+      grid-template-columns:auto auto;
+      column-gap:1rem;
+      row-gap:.35rem;
+      font-family:var(--mono);
+      font-size:clamp(1rem,1.5vw,1.35rem);
+      font-variant-numeric:tabular-nums;
+    }
+    .rows .k{color:var(--dim);letter-spacing:.08em}
+    .rows .v{text-align:right;min-width:2ch}
+    .stamp{
+      margin-top:1.5rem;
+      font-family:var(--mono);
+      font-size:clamp(.75rem,1vw,.9rem);
+      letter-spacing:.06em;
+      color:var(--dim);
+      white-space:nowrap;
+    }
+    .center{
+      font-family:var(--mono);
+      font-size:clamp(1.5rem,3.2vw,3.25rem);
+      font-weight:500;
+      letter-spacing:.02em;
+      font-variant-numeric:tabular-nums;
+      white-space:nowrap;
+      text-align:center;
+    }
+    @media (max-width:820px){
+      main{
+        grid-template-columns:1fr;
+        grid-template-rows:auto auto auto;
+        gap:3.5rem;
+        padding:3rem 1.5rem;
+        align-content:center;
+      }
+      .center{order:0}
+      .panel{order:1}
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="panel" aria-label="Decade Closed">
+      <h1>Decade Closed</h1>
+      <div class="rows">
+        <span class="k">YEARS:</span><span class="v" id="d-y">–</span>
+        <span class="k">MONTHS:</span><span class="v" id="d-mo">–</span>
+        <span class="k">DAYS:</span><span class="v" id="d-d">–</span>
+        <span class="k">HOURS:</span><span class="v" id="d-h">–</span>
+        <span class="k">MINUTES:</span><span class="v" id="d-mi">–</span>
+        <span class="k">SECONDS:</span><span class="v" id="d-s">–</span>
+      </div>
+      <div class="stamp">END: <span id="end-stamp"></span></div>
+    </section>
+
+    <div class="center" aria-label="Target">$1,000,000,000.00</div>
+
+    <section class="panel" aria-label="Time in LA">
+      <h1>Time in LA</h1>
+      <div class="rows">
+        <span class="k">YEARS:</span><span class="v" id="l-y">–</span>
+        <span class="k">MONTHS:</span><span class="v" id="l-mo">–</span>
+        <span class="k">DAYS:</span><span class="v" id="l-d">–</span>
+        <span class="k">HOURS:</span><span class="v" id="l-h">–</span>
+        <span class="k">MINUTES:</span><span class="v" id="l-mi">–</span>
+        <span class="k">SECONDS:</span><span class="v" id="l-s">–</span>
+      </div>
+      <div class="stamp">START: <span id="start-stamp"></span></div>
+    </section>
+  </main>
+
+  <script>
+    (function(){
+      var TZ = 'America/Los_Angeles';
+
+      // Wall-clock moments in Los Angeles.
+      var START = { y:2025, mo:9, d:1, h:16, mi:30, s:0 };
+      var END   = { y:2035, mo:9, d:1, h:16, mi:30, s:0 };
+
+      var fmt = new Intl.DateTimeFormat('en-US', {
+        timeZone: TZ, hourCycle: 'h23',
+        year:'numeric', month:'2-digit', day:'2-digit',
+        hour:'2-digit', minute:'2-digit', second:'2-digit'
+      });
+
+      function laParts(date){
+        var o = {};
+        fmt.formatToParts(date).forEach(function(p){ o[p.type] = p.value; });
+        return {
+          y: +o.year, mo: +o.month, d: +o.day,
+          h: +o.hour % 24, mi: +o.minute, s: +o.second
+        };
+      }
+
+      function daysInMonth(y, mo){ // mo is 1-12
+        return new Date(Date.UTC(y, mo, 0)).getUTCDate();
+      }
+
+      function toKey(p){
+        return Date.UTC(p.y, p.mo - 1, p.d, p.h, p.mi, p.s);
+      }
+
+      // Calendar difference from wall-clock a to wall-clock b (a <= b).
+      function diff(a, b){
+        if (toKey(b) < toKey(a)) return { y:0, mo:0, d:0, h:0, mi:0, s:0 };
+        var y = b.y - a.y, mo = b.mo - a.mo, d = b.d - a.d,
+            h = b.h - a.h, mi = b.mi - a.mi, s = b.s - a.s;
+        if (s < 0){ s += 60; mi--; }
+        if (mi < 0){ mi += 60; h--; }
+        if (h < 0){ h += 24; d--; }
+        if (d < 0){
+          var pm = b.mo - 1, py = b.y;
+          if (pm < 1){ pm = 12; py--; }
+          d += daysInMonth(py, pm);
+          mo--;
+        }
+        if (mo < 0){ mo += 12; y--; }
+        return { y:y, mo:mo, d:d, h:h, mi:mi, s:s };
+      }
+
+      function pad(n){ return (n < 10 ? '0' : '') + n; }
+
+      function stamp(p){
+        return p.y + '-' + pad(p.mo) + '-' + pad(p.d) + ' ' +
+               pad(p.h) + ':' + pad(p.mi) + ':' + pad(p.s);
+      }
+
+      var el = {};
+      ['d-y','d-mo','d-d','d-h','d-mi','d-s',
+       'l-y','l-mo','l-d','l-h','l-mi','l-s'].forEach(function(id){
+        el[id] = document.getElementById(id);
+      });
+
+      function set(prefix, v){
+        el[prefix + '-y'].textContent  = v.y;
+        el[prefix + '-mo'].textContent = pad(v.mo);
+        el[prefix + '-d'].textContent  = pad(v.d);
+        el[prefix + '-h'].textContent  = pad(v.h);
+        el[prefix + '-mi'].textContent = pad(v.mi);
+        el[prefix + '-s'].textContent  = pad(v.s);
+      }
+
+      document.getElementById('start-stamp').textContent = stamp(START);
+      document.getElementById('end-stamp').textContent   = stamp(END);
+
+      function tick(){
+        var now = laParts(new Date());
+        set('d', diff(now, END));
+        set('l', diff(START, now));
+      }
+
+      tick();
+      // Align updates to the wall-clock second.
+      setTimeout(function(){
+        tick();
+        setInterval(tick, 1000);
+      }, 1000 - (Date.now() % 1000));
+    })();
+  </script>
+</body>
+</html>
