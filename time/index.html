@@ -32,7 +32,7 @@
     :root{
       --bg:#000;
       --fg:#fff;
-      --mono:Consolas,"Cascadia Mono","Lucida Console",Menlo,Monaco,"Courier New",monospace;
+      --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
     }
     *,*::before,*::after{box-sizing:border-box}
     html,body{height:100%}
@@ -40,32 +40,37 @@
       margin:0;
       background:var(--bg);
       color:var(--fg);
-      font-family:var(--mono);
-      font-size:13px;
-      line-height:1.35;
+      font-family:var(--sans);
+      font-size:17px;
+      line-height:1.5;
+      font-variant-numeric:tabular-nums;
       -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
       overflow-x:hidden;
     }
     main{position:relative;min-height:100vh;min-height:100dvh}
-    .panel{position:absolute;top:4px;white-space:nowrap}
-    .panel.left{left:4px}
-    .panel.right{right:4px;text-align:right}
-    .panel h1{margin:0;font-size:inherit;font-weight:400}
-    .rows{display:grid;grid-template-columns:auto auto;column-gap:1ch}
-    .panel.right .rows .k,.panel.right .rows .v{text-align:right}
-    .rows .v{text-align:left;min-width:2ch}
-    .panel.right .rows .v{text-align:right}
-    .stamp{margin-top:1.35em}
+    .panel{position:absolute;top:10px;white-space:nowrap}
+    .panel.left{left:12px}
+    .panel.right{right:12px;text-align:right}
+    .panel h1{margin:0 0 .6em;font-size:inherit;font-weight:600;letter-spacing:.01em}
+    .rows{display:grid;grid-template-columns:auto auto;column-gap:1.5em;row-gap:.1em}
+    .rows .k{opacity:.55;letter-spacing:.04em}
+    .rows .v{text-align:right;min-width:2ch}
+    .stamp{margin-top:1.2em;font-size:.82em;opacity:.55;letter-spacing:.02em}
     .center{
       position:absolute;left:50%;top:50%;
       transform:translate(-50%,-50%);
-      font-size:clamp(1.25rem,3vw,3rem);
+      font-size:clamp(1.5rem,3.4vw,3.4rem);
+      font-weight:500;
+      letter-spacing:.01em;
       white-space:nowrap;
-      font-variant-numeric:tabular-nums;
     }
     @media (max-width:640px){
-      body{font-size:10px}
-      .center{font-size:1.4rem}
+      body{font-size:12px}
+      .panel{top:8px}
+      .panel.left{left:8px}
+      .panel.right{right:8px}
+      .center{font-size:1.5rem}
     }
   </style>
 </head>
