@@ -4,7 +4,7 @@
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Kill Goyim.</title>
+  <title>Kill Complacency.</title>
   <meta name="description" content=" />
   <link rel="canonical" href="https://killgoyim.com/" />
 
@@ -107,18 +107,22 @@
       top:calc(12px + env(safe-area-inset-top, 0px));
       right:calc(12px + env(safe-area-inset-right, 0px));
       z-index:1000;
-      opacity:0;
+      display:flex;
+      gap:8px;
       pointer-events:none;
-      transition:opacity .2s ease;
     }
 
-    body[data-controls-visible="true"] .viewer-controls,
-    .viewer-controls:has(:focus-visible){
+    body[data-controls-visible="true"] .viewer-button,
+    body[data-paused="true"] #playback-toggle,
+    .viewer-button:focus-visible{
       opacity:1;
       pointer-events:auto;
     }
 
-    .fullscreen-button{
+    .viewer-button{
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .15s ease;
       display:inline-flex;
       align-items:center;
       gap:8px;
@@ -134,13 +138,22 @@
       line-height:1.2;
       cursor:pointer;
     }
-    .fullscreen-button[hidden]{ display:none; }
-    .fullscreen-button:focus-visible{
+    .viewer-button[hidden]{ display:none; }
+    .viewer-button:focus-visible{
       outline:2px solid var(--accent);
       outline-offset:4px;
     }
-    .fullscreen-button svg{ width:16px; height:16px; }
-    body[data-controls-visible="false"] .wrap{ cursor:none; }
+    .viewer-button svg{ width:16px; height:16px; }
+    body[data-controls-visible="false"][data-paused="false"] .wrap{ cursor:none; }
+    body[data-paused="true"] .line{
+      opacity:1 !important;
+      transition:none;
+      animation-play-state:paused;
+    }
+    body[data-paused="true"] .fadeout{ opacity:0; transition:none; }
+    #playback-toggle .play-icon{ display:none; }
+    body[data-paused="true"] #playback-toggle .pause-icon{ display:none; }
+    body[data-paused="true"] #playback-toggle .play-icon{ display:block; }
     .line{ overflow-wrap:anywhere; }
 
     @media (min-width:768px){
@@ -150,7 +163,7 @@
       }
     }
     @media (prefers-reduced-motion:reduce){
-      .viewer-controls{ transition:none; }
+      .viewer-button{ transition:none; }
     }
   </style>
 
@@ -201,8 +214,18 @@
     })();
   </script>
 
-  <div class="viewer-controls">
-    <button id="fullscreen-toggle" class="fullscreen-button" type="button"
+  <div class="viewer-controls" role="group" aria-label="Reading controls">
+    <button id="playback-toggle" class="viewer-button" type="button"
+            aria-label="Pause messages" aria-keyshortcuts="Space" title="Pause messages (Space)">
+      <svg class="pause-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M8 5v14M16 5v14" />
+      </svg>
+      <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="m8 5 11 7-11 7z" />
+      </svg>
+      <span id="playback-label">Pause</span>
+    </button>
+    <button id="fullscreen-toggle" class="viewer-button" type="button"
             aria-label="Enter fullscreen" aria-pressed="false" aria-keyshortcuts="F"
             title="Enter fullscreen (F). Escape exits." hidden>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
@@ -221,7 +244,6 @@
     const request = root.requestFullscreen || root.webkitRequestFullscreen;
     const exit = document.exitFullscreen || document.webkitExitFullscreen;
     const enabled = root.requestFullscreen ? document.fullscreenEnabled : document.webkitFullscreenEnabled;
-    if (!request || !exit || enabled === false) return;
 
     let idleTimer;
     let pending = false;
@@ -233,7 +255,7 @@
       clearTimeout(idleTimer);
       idleTimer = setTimeout(() => {
         document.body.dataset.controlsVisible = 'false';
-      }, 2200);
+      }, 700);
     }
 
     function syncFullscreen(){
@@ -268,6 +290,14 @@
       }
     }
 
+    // Playback controls remain available even without the Fullscreen API.
+    document.addEventListener('pointermove', revealControls, { passive:true });
+    document.addEventListener('pointerdown', revealControls, { passive:true });
+    document.addEventListener('keydown', revealControls);
+    document.addEventListener('focusin', revealControls);
+    revealControls();
+    if (!request || !exit || enabled === false) return;
+
     button.hidden = false;
     button.addEventListener('click', toggleFullscreen);
     stage.addEventListener('click', () => {
@@ -285,10 +315,6 @@
     });
     document.addEventListener('fullscreenchange', syncFullscreen);
     document.addEventListener('webkitfullscreenchange', syncFullscreen);
-    document.addEventListener('pointermove', revealControls, { passive:true });
-    document.addEventListener('pointerdown', revealControls, { passive:true });
-    document.addEventListener('keydown', revealControls);
-    document.addEventListener('focusin', revealControls);
     syncFullscreen();
     enterFullscreen();
   })();
@@ -897,7 +923,7 @@
       {text:`Force access to capital.`,accent:`.`},
       {text:`Code and Media are the leverage of the newly rich.`,accent:`.`},
       {text:`Pursue one goal at a time.`,accent:`.`},
-      {text:`Kill Goyim.`,accent:`.`},
+      {text:`Kill Complacency.`,accent:`.`},
       {text:`Tiene la sangre pesada.`,accent:`.`},
       {text:`No lo puedo ver ni en pintura.`,accent:`.`},
       {text:`Can I just ignore this?`,accent:`?`},
@@ -920,7 +946,73 @@
     const FADE_OUT = 600;
     const HOLD = 1000;
 
-    const wait = ms => new Promise(r => setTimeout(r, ms));
+    const playbackButton = document.getElementById('playback-toggle');
+    const playbackLabel = document.getElementById('playback-label');
+    let paused = false;
+    let waiting = null;
+    let pointerWasPaused = null;
+    document.body.dataset.paused = 'false';
+
+    function armWait(){
+      waiting.started = performance.now();
+      waiting.timer = setTimeout(() => {
+        const resolve = waiting.resolve;
+        waiting = null;
+        resolve();
+      }, waiting.remaining);
+    }
+
+    const wait = ms => new Promise(resolve => {
+      waiting = { remaining:ms, resolve, started:0, timer:null };
+      if (!paused) armWait();
+    });
+
+    function setPaused(next){
+      if (paused === next) return;
+      paused = next;
+      if (waiting) {
+        if (paused) {
+          clearTimeout(waiting.timer);
+          waiting.remaining = Math.max(0, waiting.remaining - (performance.now() - waiting.started));
+        } else {
+          armWait();
+        }
+      }
+      document.body.dataset.paused = String(paused);
+      const action = paused ? 'Resume' : 'Pause';
+      playbackLabel.textContent = action;
+      playbackButton.setAttribute('aria-label', `${action} messages`);
+      playbackButton.title = `${action} messages (Space)`;
+    }
+
+    function hasSelectedMessage(){
+      const selection = window.getSelection();
+      return selection && !selection.isCollapsed && selection.rangeCount > 0 &&
+        selection.getRangeAt(0).intersectsNode(lineEl);
+    }
+
+    playbackButton.addEventListener('click', () => setPaused(!paused));
+    document.addEventListener('keydown', event => {
+      if (event.code !== 'Space' || event.repeat || event.altKey || event.ctrlKey || event.metaKey ||
+          event.target.closest('button, a, input, textarea, select, [contenteditable]')) return;
+      event.preventDefault();
+      setPaused(!paused);
+    });
+    // Freeze on press so the message cannot change while a selection is being dragged.
+    stage.addEventListener('pointerdown', event => {
+      if (!event.isPrimary || event.button !== 0) return;
+      pointerWasPaused = paused;
+      setPaused(true);
+    });
+    stage.addEventListener('pointercancel', () => { pointerWasPaused = null; });
+    stage.addEventListener('click', () => {
+      const next = pointerWasPaused === null ? !paused : !pointerWasPaused;
+      pointerWasPaused = null;
+      setPaused(hasSelectedMessage() || next);
+    });
+    document.addEventListener('selectionchange', () => {
+      if (hasSelectedMessage()) setPaused(true);
+    });
 
     function parts(m){
       const a = m.accent;

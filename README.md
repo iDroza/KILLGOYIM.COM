@@ -6,7 +6,8 @@ The page requests native browser fullscreen on arrival. Most browsers require us
 
 - Use the Fullscreen button or **F** to toggle native fullscreen.
 - Use **Escape** or the Exit fullscreen button to leave it.
-- Controls fade after 2.2 seconds of inactivity and return on pointer or keyboard activity. Keyboard focus keeps the control visible.
+- Use **Pause / Resume**, **Space**, or click/tap the reading area to pause or resume. Highlighting a message pauses it immediately and keeps the text readable until you explicitly resume.
+- Controls fade after 0.7 seconds of inactivity (plus a 0.15-second fade) and return on pointer or keyboard activity. Keyboard focus keeps its control visible. Resume stays visible while paused; Fullscreen still fades.
 - Leaving fullscreen does not cause subsequent reading-area clicks to enter it again. The button and F remain available.
 - Selecting text does not activate fullscreen.
 
@@ -16,6 +17,10 @@ The implementation lives in `index.html` and adds no dependencies. The rotating 
 
 Serve the repository with `python -m http.server 8768` and open `http://localhost:8768/`.
 
-Check initial viewport coverage, idle controls, first-click/tap fullscreen, F and button toggles, Escape, and no automatic reentry after exit. Test a narrow portrait screen and a short landscape screen, including the longest messages. Browsers without the Fullscreen API should keep displaying the words and hide the unavailable button.
+Check initial viewport coverage, idle controls, first-click/tap fullscreen, F and button toggles, Escape, and no automatic reentry after exit. Test a narrow portrait screen and a short landscape screen, including the longest messages. Browsers without the Fullscreen API should keep displaying the words, hide the unavailable Fullscreen button, and retain working playback controls.
 
-Validated in Chromium and Firefox, with Chromium touch emulation and all 600 messages fitted at 1440x900, 768x1024, 375x812, 320x568, 812x375, and 568x320. Rejected and unavailable Fullscreen API cases were also checked.
+Check that button, Space, desktop clicks, and mobile taps pause and resume without skipping a message. Drag-select text during a transition and confirm it stays selected and readable beyond the normal rotation interval. Check keyboard activation of both buttons, control fade timing, and a pause during the final transition.
+
+The original viewport/fullscreen behavior was validated in Chromium and Firefox, with Chromium touch emulation and all 600 messages fitted at 1440x900, 768x1024, 375x812, 320x568, 812x375, and 568x320. Rejected and unavailable Fullscreen API cases were also checked.
+
+The playback update was checked in Chromium with desktop input and mobile touch emulation: button/Space/click/tap toggles, real drag selection, remaining-time resume, unavailable fullscreen, idle control visibility, 320px/375px portrait and phone landscape layouts, and pauses during fade-out and the final message transition.
