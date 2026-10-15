@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Kill Goyim.</title>
   <meta name="description" content=" />
   <link rel="canonical" href="https://killgoyim.com/" />
@@ -49,75 +49,30 @@
       overflow:hidden; /* desktop: lock viewport */
     }
 
-    /* STATIC HOME HEADER (Contact only) */
+    /* The reading view fills the viewport from the first paint. */
     .home-header,
-    .home-header *{ box-sizing:border-box; }
-
-    .home-header{
-      width:100%;
-      display:flex;
-      align-items:center;
-      flex-wrap:nowrap;                 /* keep on one line */
-      padding:1.2rem 1.4rem 0.4rem;     /* matches constraint topbar */
-      z-index:6;
-    }
-
-    .home-header .home-contact{
-      margin-left:auto;                 /* force right */
-      display:inline-flex;
-      align-items:center;
-      position:relative;
-      color:var(--fg, #fff);
-      text-decoration:none;
-      font-weight:600;
-      letter-spacing:.01em;
-      padding-bottom:.35rem;
-      transition:opacity .2s ease;
-      white-space:nowrap;
-      flex:0 0 auto;
-    }
-
-    .home-header .home-contact::after{
-      content:'';
-      position:absolute;
-      left:0;
-      bottom:-0.35rem;
-      height:2px;
-      width:0;
-      background:var(--accent, #9900FF); /* purple underline */
-      transition:width .2s ease-out;
-    }
-
-    .home-header .home-contact:hover{ opacity:.55; }
-    .home-header .home-contact:hover::after{ width:100%; }
-
-    /* Make remaining viewport space belong to the hero area */
-    body{
-      display:flex;
-      flex-direction:column;
-      min-height:100vh;
-    }
+    #site-footer{ display:none; }
 
     .wrap{
-      position:relative;
-      z-index:2;
-      flex:1 1 auto;
-      min-height:calc(100vh - 60px); /* FIX: was min-height:0 — now gives grid room to center */
+      box-sizing:border-box;
+      position:fixed;
+      inset:0;
+      height:100vh;
+      height:100dvh;
       display:grid;
       place-items:center;
       text-align:center;
-      padding:2rem;
-      padding-bottom:5.5rem; /* desktop: space for fixed footer */
+      padding:calc(64px + env(safe-area-inset-top, 0px))
+              calc(24px + env(safe-area-inset-right, 0px))
+              calc(64px + env(safe-area-inset-bottom, 0px))
+              calc(24px + env(safe-area-inset-left, 0px));
     }
 
     .hero{
-      display:inline-block;
+      width:100%;
+      max-width:1200px;
+      min-width:0;
       user-select:text;
-      pointer-events:auto;
-      border:none; /* removed thin white border */
-      border-radius:24px;
-      padding:clamp(16px,3vw,32px) clamp(18px,4vw,52px);
-      box-shadow:var(--shadow);
     }
 
     .line{
@@ -147,91 +102,55 @@
     .flash { animation: fadePulse 2.6s ease-in-out infinite alternate; }
     @keyframes fadePulse { from { opacity:.28 } to { opacity:1 } }
 
-    /* footer (desktop) */
-    footer.site-footer{
+    .viewer-controls{
       position:fixed;
-      left:0;
-      right:0;
-      bottom:0;
-      z-index:5;
-      background:rgba(0,0,0,.4);
-      backdrop-filter:blur(8px);
-      display:flex;
-      justify-content:center;
-      gap:2.5rem;
-      padding:1.35rem 1.5rem 1.1rem;
-    }
-
-    .footer-link{
-      position:relative;
-      color:#fff;
-      text-decoration:none;
-      font-weight:600;
-      letter-spacing:.02em;
-      cursor:pointer;
-      padding-bottom:.35rem;
+      top:calc(12px + env(safe-area-inset-top, 0px));
+      right:calc(12px + env(safe-area-inset-right, 0px));
+      z-index:1000;
+      opacity:0;
+      pointer-events:none;
       transition:opacity .2s ease;
     }
 
-    .footer-link::after{
-      content:'';
-      position:absolute;
-      left:0;
-      bottom:-0.35rem;
-      height:2px;
-      width:0;
-      background:#fff;
-      transition:width .2s ease-out;
+    body[data-controls-visible="true"] .viewer-controls,
+    .viewer-controls:has(:focus-visible){
+      opacity:1;
+      pointer-events:auto;
     }
 
-    .footer-link:hover{
-      opacity:.55;
+    .fullscreen-button{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:44px;
+      padding:10px 14px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:rgba(0,0,0,.8);
+      color:var(--fg);
+      font-family:inherit;
+      font-size:13px;
+      font-weight:500;
+      line-height:1.2;
+      cursor:pointer;
     }
-
-    .footer-link:hover::after{
-      width:100%;
+    .fullscreen-button[hidden]{ display:none; }
+    .fullscreen-button:focus-visible{
+      outline:2px solid var(--accent);
+      outline-offset:4px;
     }
+    .fullscreen-button svg{ width:16px; height:16px; }
+    body[data-controls-visible="false"] .wrap{ cursor:none; }
+    .line{ overflow-wrap:anywhere; }
 
-    /* visually hidden SEO block */
-    .sr-only{
-      position:absolute;
-      width:1px;
-      height:1px;
-      padding:0;
-      margin:-1px;
-      overflow:hidden;
-      clip:rect(0,0,0,0);
-      border:0;
-    }
-
-    /* mobile adjustments */
-    @media (max-width: 540px){
-      html,body{
-        overflow:auto;     /* allow scroll */
-        height:auto;
-      }
-      body{
-        display:block;     /* simpler flow on mobile */
-      }
+    @media (min-width:768px){
       .wrap{
-        min-height:calc(100vh - 120px); /* hero centered above footer */
-        display:grid;
-        place-items:center;
-        padding:1.6rem 1.4rem 0;
+        padding-left:calc(48px + env(safe-area-inset-left, 0px));
+        padding-right:calc(48px + env(safe-area-inset-right, 0px));
       }
-      .hero{
-        max-width:100%;
-      }
-      footer.site-footer{
-        position:static;
-        flex-wrap:wrap;
-        justify-content:flex-start;
-        gap:1rem 1.5rem;
-        padding:1.1rem 1.4rem 1.4rem;
-      }
-      .footer-link{
-        font-size:.85rem;
-      }
+    }
+    @media (prefers-reduced-motion:reduce){
+      .viewer-controls{ transition:none; }
     }
   </style>
 
@@ -282,11 +201,116 @@
     })();
   </script>
 
-  <div id="fade" class="fadeout"></div>
+  <div class="viewer-controls">
+    <button id="fullscreen-toggle" class="fullscreen-button" type="button"
+            aria-label="Enter fullscreen" aria-pressed="false" aria-keyshortcuts="F"
+            title="Enter fullscreen (F). Escape exits." hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+        <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" />
+      </svg>
+      <span id="fullscreen-label">Fullscreen</span>
+    </button>
+  </div>
+
+  <script>
+  (function(){
+    const root = document.documentElement;
+    const stage = document.querySelector('.wrap');
+    const button = document.getElementById('fullscreen-toggle');
+    const label = document.getElementById('fullscreen-label');
+    const request = root.requestFullscreen || root.webkitRequestFullscreen;
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    const enabled = root.requestFullscreen ? document.fullscreenEnabled : document.webkitFullscreenEnabled;
+    if (!request || !exit || enabled === false) return;
+
+    let idleTimer;
+    let pending = false;
+    let firstInteraction = true;
+    const fullscreenElement = () => document.fullscreenElement || document.webkitFullscreenElement;
+
+    function revealControls(){
+      document.body.dataset.controlsVisible = 'true';
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => {
+        document.body.dataset.controlsVisible = 'false';
+      }, 2200);
+    }
+
+    function syncFullscreen(){
+      const active = !!fullscreenElement();
+      if (active) firstInteraction = false;
+      button.setAttribute('aria-pressed', String(active));
+      button.setAttribute('aria-label', active ? 'Exit fullscreen' : 'Enter fullscreen');
+      button.title = active ? 'Exit fullscreen (F or Escape)' : 'Enter fullscreen (F). Escape exits.';
+      label.textContent = active ? 'Exit fullscreen' : 'Fullscreen';
+      revealControls();
+    }
+
+    async function enterFullscreen(){
+      if (pending || fullscreenElement()) return;
+      pending = true;
+      try {
+        // Most browsers require a gesture; an allowed automatic request can succeed here too.
+        await (root.requestFullscreen ? request.call(root, { navigationUI:'hide' }) : request.call(root));
+      } catch (_) {
+        // The full-viewport reading view remains usable when fullscreen is denied.
+      } finally {
+        pending = false;
+      }
+    }
+
+    async function toggleFullscreen(){
+      firstInteraction = false;
+      if (fullscreenElement()) {
+        try { await exit.call(document); } catch (_) { /* Keep the current view. */ }
+      } else {
+        await enterFullscreen();
+      }
+    }
+
+    button.hidden = false;
+    button.addEventListener('click', toggleFullscreen);
+    stage.addEventListener('click', () => {
+      if (!firstInteraction || !window.getSelection().isCollapsed) return;
+      firstInteraction = false;
+      enterFullscreen();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.repeat || event.altKey || event.ctrlKey || event.metaKey ||
+          event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+      if (event.key.toLowerCase() === 'f') {
+        event.preventDefault();
+        toggleFullscreen();
+      }
+    });
+    document.addEventListener('fullscreenchange', syncFullscreen);
+    document.addEventListener('webkitfullscreenchange', syncFullscreen);
+    document.addEventListener('pointermove', revealControls, { passive:true });
+    document.addEventListener('pointerdown', revealControls, { passive:true });
+    document.addEventListener('keydown', revealControls);
+    document.addEventListener('focusin', revealControls);
+    syncFullscreen();
+    enterFullscreen();
+  })();
+  </script>
 
   <script>
   (function(){
     const lineEl = document.getElementById('line');
+
+    const stage = document.querySelector('.wrap');
+    function fitLine(){
+      lineEl.style.fontSize = '';
+      const style = getComputedStyle(stage);
+      const availableHeight = stage.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+      const availableWidth = document.getElementById('hero').clientWidth;
+      let size = parseFloat(getComputedStyle(lineEl).fontSize);
+      while (size > 12 && (lineEl.scrollHeight > availableHeight || lineEl.scrollWidth > availableWidth)) {
+        lineEl.style.fontSize = `${--size}px`;
+      }
+    }
+    if ('ResizeObserver' in window) new ResizeObserver(fitLine).observe(stage);
+    else window.addEventListener('resize', fitLine);
 
     const msgs = [
       {text:`The world is yours.`,accent:`world`},
@@ -923,6 +947,7 @@
       lineEl.style.opacity = 0;
       lineEl.classList.remove('flash');
       lineEl.innerHTML = buildHTML(m);
+      fitLine();
 
       void lineEl.offsetWidth;
 
@@ -956,6 +981,7 @@
       lineEl.style.opacity = 1;
       lineEl.classList.add('flash');
       lineEl.innerHTML = FINAL_LINE;
+      fitLine();
 
       fade.classList.remove('active');
     })();
