@@ -33,7 +33,7 @@ The arrow-navigation update passes 10 dependency-free regression tests, includin
 
 ## Time page month indicator
 
-`/time/` displays JAN through DEC in a green instrument-style strip at the vertical midpoint of the desktop viewport. Past months are dimmed, the current and upcoming months stay lit, and a downward triangle marks the current month. The smaller target text sits below the strip. On short screens, the layout scrolls rather than overlapping the clocks, months, or target text.
+`/time/` displays JAN through DEC in a green instrument-style strip at the vertical midpoint of the desktop viewport. Past months are dimmed, the current and upcoming months stay lit, and a downward triangle marks the current month. The smaller target text sits below the strip. The whole page fits the dynamic viewport height. Type sizes and vertical spacing contract on shorter screens, keeping the clocks, months, and target text visible without extra scrolling.
 
 The indicator uses the existing `America/Los_Angeles` clock, updates on month rollover without reloading, and resets all lights each January. Screen readers receive full month names, past/current/upcoming states, and `aria-current` on the current month. No dependencies or font downloads are added.
 

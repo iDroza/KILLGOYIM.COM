@@ -41,7 +41,7 @@
       background:var(--bg);
       color:var(--fg);
       font-family:var(--sans);
-      font-size:clamp(10px,3.2vw,12px);
+      font-size:clamp(8px,min(3.2vw,2.5dvh),12px);
       line-height:1.5;
       font-variant-numeric:tabular-nums;
       -webkit-font-smoothing:antialiased;
@@ -50,20 +50,20 @@
     }
     main{
       display:grid;
-      grid-template-rows:minmax(190px,1fr) auto minmax(190px,1fr);
-      min-height:100vh;
-      min-height:100dvh;
+      grid-template-rows:minmax(0,1fr) auto minmax(0,1fr);
+      height:100vh;
+      height:100dvh;
     }
     .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:8px 8px 0}
     .panel{white-space:nowrap}
-    .fill{display:flex;align-items:center;justify-content:center;padding:24px 12px}
+    .fill{display:flex;align-items:center;justify-content:center;min-height:0;padding:clamp(6px,2.7dvh,24px) 12px}
     .panel h1{margin:0 0 .6em;font-size:inherit;font-weight:600;letter-spacing:.01em}
     .rows{display:grid;grid-template-columns:auto auto;column-gap:1.5em;row-gap:.1em}
     .rows .k{opacity:.55;letter-spacing:.04em}
     .rows .v{text-align:right;min-width:2ch}
     .stamp{margin-top:1.2em;opacity:.55;letter-spacing:.02em}
     .center{
-      font-size:clamp(1.1rem,5.3vw,1.35rem);
+      font-size:clamp(1rem,min(max(1.1rem,5.3vw),4.8dvh),1.35rem);
       font-weight:700;
       letter-spacing:.01em;
       white-space:nowrap;
@@ -71,7 +71,7 @@
       line-height:1.25;
     }
     .year-progress{
-      padding:18px clamp(10px,4vw,80px);
+      padding:clamp(4px,2dvh,18px) clamp(10px,4vw,80px);
       font-family:"Courier New",Courier,monospace;
       font-weight:700;
     }
@@ -85,7 +85,7 @@
     }
     .month{
       position:relative;
-      padding:26px 0 14px;
+      padding:clamp(18px,2.9dvh,26px) 0 clamp(4px,1.55dvh,14px);
       color:#7aff6b;
       font-size:clamp(.625rem,1.7vw,1.5rem);
       letter-spacing:.04em;
@@ -97,7 +97,7 @@
     .month[aria-current="date"]{color:#adff9f;text-shadow:0 0 10px #7aff6b99,0 0 24px #7aff6b44}
     .month-pointer{
       position:absolute;
-      top:10px;
+      top:calc(clamp(18px,2.9dvh,26px) - 16px);
       left:50%;
       width:0;
       height:0;
@@ -108,12 +108,11 @@
       filter:drop-shadow(0 0 5px #7aff6b88);
     }
     @media (min-width:641px){
-      body{font-size:17px}
-      main{grid-template-rows:minmax(260px,1fr) auto minmax(260px,1fr)}
+      body{font-size:clamp(8px,2.5dvh,17px)}
       .top{padding:10px 12px 0}
-      .center{font-size:clamp(1.5rem,2.7vw,2.7rem)}
+      .center{font-size:clamp(1rem,min(max(1.5rem,2.7vw),4.8dvh),2.7rem)}
       .month{letter-spacing:.12em}
-      .month-pointer{top:7px;border-left-width:7px;border-right-width:7px;border-top-width:11px}
+      .month-pointer{top:calc(clamp(18px,2.9dvh,26px) - 19px);border-left-width:7px;border-right-width:7px;border-top-width:11px}
     }
   </style>
 </head>
