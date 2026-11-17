@@ -30,3 +30,11 @@ The original viewport/fullscreen behavior was validated in Chromium and Firefox,
 The playback update was checked in Chromium with desktop input and mobile touch emulation: button/Space/click/tap toggles, real drag selection, remaining-time resume, unavailable fullscreen, idle control visibility, 320px/375px portrait and phone landscape layouts, and pauses during fade-out and the final message transition.
 
 The arrow-navigation update passes 10 dependency-free regression tests, including rewind and replay through all 643 messages. Browser checks passed in Firefox, Chromium, and Chromium with phone touch emulation, including focused controls, paused navigation, cancelled transitions, full rewind, and the final-message boundaries, with no page errors.
+
+## Time page month indicator
+
+`/time/` displays JAN through DEC in a green instrument-style strip at the vertical midpoint of the desktop viewport. Past months are dimmed, the current and upcoming months stay lit, and a downward triangle marks the current month. The smaller target text sits below the strip. On short screens, the layout scrolls rather than overlapping the clocks, months, or target text.
+
+The indicator uses the existing `America/Los_Angeles` clock, updates on month rollover without reloading, and resets all lights each January. Screen readers receive full month names, past/current/upcoming states, and `aria-current` on the current month. No dependencies or font downloads are added.
+
+Run `node --test tests/time-months.test.cjs` for all twelve months, winter and summer midnight transitions, the New Year reset, and continued countdown updates. Preview `/time/` at desktop, narrow mobile, and phone landscape sizes to check the single-row months and spacing.

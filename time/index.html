@@ -41,34 +41,111 @@
       background:var(--bg);
       color:var(--fg);
       font-family:var(--sans);
-      font-size:17px;
+      font-size:clamp(10px,3.2vw,12px);
       line-height:1.5;
       font-variant-numeric:tabular-nums;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       overflow-x:hidden;
     }
-    main{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
-    .top{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 12px 0}
+    main{
+      display:grid;
+      grid-template-rows:minmax(190px,1fr) auto minmax(190px,1fr);
+      min-height:100vh;
+      min-height:100dvh;
+    }
+    .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:8px 8px 0}
     .panel{white-space:nowrap}
-    .fill{flex:1;display:flex;align-items:center;justify-content:center}
+    .fill{display:flex;align-items:center;justify-content:center;padding:24px 12px}
     .panel h1{margin:0 0 .6em;font-size:inherit;font-weight:600;letter-spacing:.01em}
     .rows{display:grid;grid-template-columns:auto auto;column-gap:1.5em;row-gap:.1em}
     .rows .k{opacity:.55;letter-spacing:.04em}
     .rows .v{text-align:right;min-width:2ch}
     .stamp{margin-top:1.2em;opacity:.55;letter-spacing:.02em}
     .center{
-      font-size:clamp(1.5rem,3.4vw,3.4rem);
+      font-size:clamp(1.1rem,5.3vw,1.35rem);
       font-weight:700;
       letter-spacing:.01em;
       white-space:nowrap;
       text-align:center;
       line-height:1.25;
     }
-    @media (max-width:640px){
-      body{font-size:12px}
-      .top{padding:8px 8px 0}
-      .center{font-size:1.5rem}
+    .year-progress{
+      padding:18px clamp(10px,4vw,80px);
+      font-family:"Courier New",Courier,monospace;
+      font-weight:700;
+    }
+    .month-strip{
+      position:relative;
+      display:grid;
+      grid-template-columns:repeat(12,minmax(0,1fr));
+      margin:0;
+      padding:0;
+      list-style:none;
+    }
+    .month-strip::before{
+      content:"";
+      position:absolute;
+      top:12px;
+      left:4.166667%;
+      right:4.166667%;
+      height:8px;
+      border-top:1px solid #16351c;
+      background:repeating-linear-gradient(90deg,#16351c 0 1px,transparent 1px 25%);
+      background-size:calc(100% / 11) 100%;
+    }
+    .month{
+      position:relative;
+      padding:26px 0 14px;
+      color:#7aff6b;
+      font-size:clamp(.625rem,1.7vw,1.5rem);
+      letter-spacing:.04em;
+      line-height:1.2;
+      text-align:center;
+      text-shadow:0 0 8px #7aff6b66,0 0 20px #7aff6b26;
+    }
+    .month::before{
+      content:"";
+      position:absolute;
+      top:12px;
+      left:50%;
+      width:1px;
+      height:9px;
+      background:currentColor;
+    }
+    .month::after{
+      content:"";
+      position:absolute;
+      bottom:3px;
+      left:50%;
+      width:clamp(8px,1.3vw,18px);
+      height:2px;
+      transform:translateX(-50%);
+      background:currentColor;
+      box-shadow:0 0 8px #7aff6b66;
+    }
+    .month[data-state="past"]{color:#1d3b23;text-shadow:none}
+    .month[data-state="past"]::after{box-shadow:none}
+    .month[aria-current="date"]{color:#adff9f;text-shadow:0 0 10px #7aff6b99,0 0 24px #7aff6b44}
+    .month-pointer{
+      position:absolute;
+      top:-7px;
+      left:50%;
+      width:0;
+      height:0;
+      border-left:5px solid transparent;
+      border-right:5px solid transparent;
+      border-top:8px solid #adff9f;
+      transform:translateX(-50%);
+      filter:drop-shadow(0 0 5px #7aff6b88);
+    }
+    @media (min-width:641px){
+      body{font-size:17px}
+      main{grid-template-rows:minmax(260px,1fr) auto minmax(260px,1fr)}
+      .top{padding:10px 12px 0}
+      .center{font-size:clamp(1.5rem,2.7vw,2.7rem)}
+      .month{letter-spacing:.12em}
+      .month-pointer{top:-11px;border-left-width:7px;border-right-width:7px;border-top-width:11px}
     }
   </style>
 </head>
@@ -102,6 +179,22 @@
       <div class="stamp">START: <span id="start-stamp"></span></div>
     </section>
     </div>
+    <section class="year-progress" aria-label="Months of the current year">
+      <ol class="month-strip" id="month-strip" role="list">
+        <li class="month" data-month="1">JAN</li>
+        <li class="month" data-month="2">FEB</li>
+        <li class="month" data-month="3">MAR</li>
+        <li class="month" data-month="4">APR</li>
+        <li class="month" data-month="5">MAY</li>
+        <li class="month" data-month="6">JUN</li>
+        <li class="month" data-month="7">JUL</li>
+        <li class="month" data-month="8">AUG</li>
+        <li class="month" data-month="9">SEP</li>
+        <li class="month" data-month="10">OCT</li>
+        <li class="month" data-month="11">NOV</li>
+        <li class="month" data-month="12">DEC</li>
+      </ol>
+    </section>
     <div class="fill">
     <div class="center" aria-label="Target">
       <div>One Billion</div>
@@ -187,10 +280,39 @@
       document.getElementById('start-stamp').textContent = stamp(START);
       document.getElementById('end-stamp').textContent   = stamp(END);
 
+      var monthStrip = document.getElementById('month-strip');
+      var monthLights = monthStrip.querySelectorAll('.month');
+      var monthNames = ['January','February','March','April','May','June',
+                        'July','August','September','October','November','December'];
+      var displayedMonth = '';
+
+      function updateMonths(now){
+        var key = now.y + '-' + now.mo;
+        if (key === displayedMonth) return;
+        displayedMonth = key;
+        monthStrip.parentElement.setAttribute('aria-label', 'Months of ' + now.y + '. Current month: ' + monthNames[now.mo - 1]);
+        monthLights.forEach(function(light, index){
+          var month = index + 1;
+          var state = month < now.mo ? 'past' : month === now.mo ? 'current' : 'upcoming';
+          light.dataset.state = state;
+          light.setAttribute('aria-label', monthNames[index] + ', ' + state);
+          light.removeAttribute('aria-current');
+          if (month === now.mo) light.setAttribute('aria-current', 'date');
+        });
+        var pointer = monthStrip.querySelector('.month-pointer');
+        if (!pointer){
+          pointer = document.createElement('span');
+          pointer.className = 'month-pointer';
+          pointer.setAttribute('aria-hidden', 'true');
+        }
+        monthLights[now.mo - 1].appendChild(pointer);
+      }
+
       function tick(){
         var now = laParts(new Date());
         set('d', diff(now, END));
         set('l', diff(START, now));
+        updateMonths(now);
       }
 
       tick();
