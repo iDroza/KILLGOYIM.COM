@@ -83,17 +83,6 @@
       padding:0;
       list-style:none;
     }
-    .month-strip::before{
-      content:"";
-      position:absolute;
-      top:12px;
-      left:4.166667%;
-      right:4.166667%;
-      height:8px;
-      border-top:1px solid #16351c;
-      background:repeating-linear-gradient(90deg,#16351c 0 1px,transparent 1px 25%);
-      background-size:calc(100% / 11) 100%;
-    }
     .month{
       position:relative;
       padding:26px 0 14px;
@@ -104,32 +93,11 @@
       text-align:center;
       text-shadow:0 0 8px #7aff6b66,0 0 20px #7aff6b26;
     }
-    .month::before{
-      content:"";
-      position:absolute;
-      top:12px;
-      left:50%;
-      width:1px;
-      height:9px;
-      background:currentColor;
-    }
-    .month::after{
-      content:"";
-      position:absolute;
-      bottom:3px;
-      left:50%;
-      width:clamp(8px,1.3vw,18px);
-      height:2px;
-      transform:translateX(-50%);
-      background:currentColor;
-      box-shadow:0 0 8px #7aff6b66;
-    }
     .month[data-state="past"]{color:#1d3b23;text-shadow:none}
-    .month[data-state="past"]::after{box-shadow:none}
     .month[aria-current="date"]{color:#adff9f;text-shadow:0 0 10px #7aff6b99,0 0 24px #7aff6b44}
     .month-pointer{
       position:absolute;
-      top:-7px;
+      top:10px;
       left:50%;
       width:0;
       height:0;
@@ -145,7 +113,7 @@
       .top{padding:10px 12px 0}
       .center{font-size:clamp(1.5rem,2.7vw,2.7rem)}
       .month{letter-spacing:.12em}
-      .month-pointer{top:-11px;border-left-width:7px;border-right-width:7px;border-top-width:11px}
+      .month-pointer{top:7px;border-left-width:7px;border-right-width:7px;border-top-width:11px}
     }
   </style>
 </head>
